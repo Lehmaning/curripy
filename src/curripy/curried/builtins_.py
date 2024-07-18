@@ -11,8 +11,3 @@ def map_(func: Callable, iterables: Iterable):
 @curry
 def filter_(function: Callable | None, iterable: Iterable):
     return filter(function, iterable)
-
-
-@curry
-def range_(*args):
-    return range(*args)

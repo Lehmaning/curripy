@@ -2,15 +2,13 @@ from ast import TypeVar
 from re import Pattern
 from typing import (
     Any,
-    AnyStr,
-    Iterable,
-    Iterator,
     LiteralString,
     Protocol,
     Self,
     SupportsIndex,
     overload,
 )
+
 
 T = TypeVar("T")
 
@@ -26,15 +24,11 @@ class Strippable(Protocol):
 class Splitable(Protocol):
     @overload
     def split(
-        self: Pattern[str],
-        string: str,
-        maxsplit: int = 0
+        self: Pattern[str], string: str, maxsplit: int = 0
     ) -> list[str | Any]: ...
     @overload
     def split(
-        self: Pattern[bytes],
-        string: Any,
-        maxsplit: int = 0
+        self: Pattern[bytes], string: Any, maxsplit: int = 0
     ) -> list[bytes | Any]: ...
     @overload
     def split(
@@ -43,15 +37,3 @@ class Splitable(Protocol):
         maxsplit: SupportsIndex = -1,
     ) -> list[LiteralString]: ...
     def split(self, *args, **kwargs) -> Any: ...
-
-
-class Searchable(Protocol):
-    def search(self, *args, **kwargs) -> Any | None: ...
-
-
-class Findallable(Protocol):
-    def findall(self, *args, **kwargs) -> Iterable[Self]: ...
-
-
-class Finditerable(Protocol):
-    def findall(self, *args, **kwargs) -> Iterator: ...

@@ -1,10 +1,8 @@
-# %%
 from operator import methodcaller as m
-from typing import Any, AnyStr, Callable, List, LiteralString, SupportsIndex, TypeVar
+from typing import AnyStr, Callable, LiteralString, SupportsIndex, TypeVar
 
-from curripy.curried.builtins_ import map_
-from curripy.pointfree.types import Encodable, Splitable, Strippable
-from returns.pipeline import pipe
+from curripy.typeclasses.class_ import Encodable, Splitable, Strippable
+
 T = TypeVar("T")
 
 
@@ -14,7 +12,9 @@ def encode(
     return m("encode", encoding, errors)
 
 
-def split(sep: AnyStr, maxsplit: SupportsIndex = -1) -> Callable[[Splitable], Splitable]:
+def split(
+    sep: AnyStr, maxsplit: SupportsIndex = -1
+) -> Callable[[Splitable], Splitable]:
     return m("split", sep, maxsplit)
 
 
