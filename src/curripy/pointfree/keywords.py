@@ -31,8 +31,3 @@ def if_(condition):
 
 then_ = pass_arg
 else_ = then_
-
-if __name__ == "__main__":
-    from ..curried.operator_ import eq
-    cond = pipe(if_(eq(2)), then_(print), else_(pipe(chr, print)))
-    print(cond(114514))
