@@ -1,7 +1,7 @@
 from operator import methodcaller as m
-from typing import AnyStr, Callable, LiteralString, SupportsIndex, TypeVar
+from typing import Callable, LiteralString, SupportsIndex, TypeVar
 
-from ..protocols import CanEncode, CanSplitGeneric, CanStripGeneric, CanStrip
+from .protocols import CanEncode, CanSplitGeneric, CanStripGeneric
 
 T = TypeVar("T")
 

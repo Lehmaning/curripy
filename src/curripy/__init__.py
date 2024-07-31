@@ -1,1 +1,1 @@
-from curripy import curried, pointfree
+from curripy.modules import *  # noqa: F403

@@ -1,4 +1,4 @@
-from curripy.curried import eq
+from curripy.modules.operator_ import eq
 from curripy.functionalize_tools import pipe
 from curripy.pointfree.keywords import else_, if_, if_then_else, then_
 
