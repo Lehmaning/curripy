@@ -45,7 +45,7 @@ from operator import sub as sub_
 from operator import truediv as truediv_
 from operator import xor as xor_
 
-from ...functionalize_tools import curry as c
+from ..functionalize_tools import curry as c
 
 __all__ = [
     "add",
