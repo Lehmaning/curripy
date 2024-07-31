@@ -1,24 +1,23 @@
 from operator import methodcaller as m
 from typing import AnyStr, Callable, LiteralString, SupportsIndex, TypeVar
 
-from curripy.typeclasses.class_ import Encodable, Splitable, Strippable
+from ..protocols import CanEncode, CanSplitGeneric, CanStripGeneric, CanStrip
 
 T = TypeVar("T")
 
-
 def encode(
     encoding: str = "utf-8", errors: str = "strict"
-) -> Callable[[Encodable], bytes]:
+) -> Callable[[CanEncode], bytes]:
     return m("encode", encoding, errors)
 
 
 def split(
-    sep: AnyStr, maxsplit: SupportsIndex = -1
-) -> Callable[[Splitable], Splitable]:
+    sep: str, maxsplit: SupportsIndex = -1
+) -> Callable[[CanSplitGeneric], CanSplitGeneric]:
     return m("split", sep, maxsplit)
 
 
 def strip(
     chars: str | LiteralString | None = None,
-) -> Callable[[Strippable], Strippable]:
+) -> Callable[[CanStripGeneric], CanStripGeneric]:
     return m("strip", chars)
