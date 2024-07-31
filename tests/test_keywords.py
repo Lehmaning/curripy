@@ -11,7 +11,7 @@ def test_cond():
     )(1 + 1)
 
     cond_single = if_then_else(
-        eq(2),
+        eq(2)
         lambda x: 1,
         lambda x: 0,
     )(1 + 1)

@@ -33,7 +33,7 @@ setattr_ = curry_right(setattr)
 vars_ = tap(vars)
 
 
-def getattr_(name: str, default: __Retur) -> Callable[[object], __ReturnType]:
+def getattr_(name: str, default: __ReturnType | None = None) -> Callable[[object], __ReturnType | None]:
     return partial(getattr, name)
 
 
