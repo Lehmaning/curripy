@@ -8,7 +8,7 @@ __all__ = [
     "CanSplit",
     "CanStripGeneric",
     "CanSplitGeneric",
-    "Can",
+    "CanEncodeGeneric",
 ]
 
 

@@ -1,6 +1,6 @@
 from typing import Callable, TypeVar
 
-from ...functionalize_tools import curry, curry_right, identity, partial, tap
+from ..functionalize_tools import curry, curry_right, identity, partial, tap
 from ..operator_.pointfree import pass_arg
 
 __all__ = [
