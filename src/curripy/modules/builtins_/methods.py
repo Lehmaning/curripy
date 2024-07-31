@@ -3,7 +3,12 @@ from typing import Callable, LiteralString, SupportsIndex, TypeVar
 
 from .protocols import CanEncode, CanSplitGeneric, CanStripGeneric
 
-T = TypeVar("T")
+__all__ = [
+    "encode",
+    "split",
+    "strip",
+]
+
 
 def encode(
     encoding: str = "utf-8", errors: str = "strict"

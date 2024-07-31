@@ -1,12 +1,29 @@
-from typing import Callable, TypeVar
+from typing import Any, Callable, TypeVar
 
 from ...functionalize_tools import curry, curry_right, identity, partial, tap
 from ..operator_.pointfree import pass_arg
 
+__all__ = [
+    "print_",
+    "globals_",
+    "help_",
+    "input_",
+    "vars_",
+    "if_then_else",
+    "if_then",
+    "if_",
+    "then_",
+    "else_",
+]
+
+
+__ArgumentType = TypeVar("__ArgumentType")
+__ReturnType = TypeVar("__ReturnType")
+__ReturnTypeThen = TypeVar("__ReturnTypeThen")
+__ReturnTypeElse = TypeVar("__ReturnTypeElse")
 
 isinstance_ = curry_right(isinstance, arity=2)
 issubclass_ = curry_right(issubclass, arity=2)
-getattr_ = curry_right(getattr, arity=2)
 hasattr_ = curry_right(hasattr)
 print_ = tap(print)
 globals_ = tap(globals)
@@ -15,10 +32,8 @@ input_ = tap(input)
 setattr_ = curry_right(setattr)
 vars_ = tap(vars)
 
-
-__ArgumentType = TypeVar("__ArgumentType")
-__ReturnTypeThen = TypeVar("__ReturnTypeThen")
-__ReturnTypeElse = TypeVar("__ReturnTypeElse")
+def getattr_(name: str, default: __ReturnType) -> Callable[[object], Any | __ReturnType]:
+    return partial(getattr, name)
 
 @curry
 def if_then_else(

@@ -2,6 +2,16 @@
 
 from typing import Protocol, Self, SupportsIndex, TypeVar
 
+__all__ = [
+    "CanEncode",
+    "CanStrip",
+    "CanSplit",
+    "CanStripGeneric",
+    "CanSplitGeneric",
+    "CanEncodeGeneric",
+]
+
+
 class CanEncode(Protocol):
     def encode(self, encoding: str, errors: str) -> bytes: ...
 
