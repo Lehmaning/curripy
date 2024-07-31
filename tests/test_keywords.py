@@ -1,6 +1,6 @@
-from curripy.modules.operator_ import eq
 from curripy.functionalize_tools import pipe
-from curripy.pointfree.keywords import else_, if_, if_then_else, then_
+from curripy.builtins_ import else_, if_, if_then_else, then_
+from curripy.operator_ import eq
 
 
 def test_cond():
