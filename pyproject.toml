@@ -1,7 +1,7 @@
 [project]
 name = "curripy"
 version = "0.1.0"
-description = "Add your description here"
+description = "Curried / Point-free versions of the Python standard libraries functions and methods."
 authors = [
     { name = "Lehmaning", email = "60032845+Lehmaning@users.noreply.github.com" }
 ]
