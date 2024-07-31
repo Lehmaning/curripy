@@ -3,11 +3,7 @@ from typing import Callable, LiteralString, SupportsIndex, TypeVar
 
 from .protocols import CanEncode, CanSplitGeneric, CanStripGeneric
 
-__all__ = [
-    "encode",
-    "split",
-    "strip",
-]
+__all__ = ["encode", "split"]
 
 
 def encode(

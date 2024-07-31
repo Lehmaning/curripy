@@ -2,9 +2,7 @@ import re
 from typing import AnyStr, Callable
 from ...functionalize_tools import partial
 
-__all__ = [
-    "search",
-]
+__all__ = ["search"]
 
 
 def search(

@@ -18,6 +18,7 @@ isinstance_ = curry(isinstance)
 issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)
 
+
 @curry
 def getattr_(
     o: Any, name: str, default: __ReturnType = None

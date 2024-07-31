@@ -1,4 +1,4 @@
-from typing import Any, Callable, TypeVar
+from typing import Callable, TypeVar
 
 from ...functionalize_tools import curry, curry_right, identity, partial, tap
 from ..operator_.pointfree import pass_arg
@@ -32,8 +32,10 @@ input_ = tap(input)
 setattr_ = curry_right(setattr)
 vars_ = tap(vars)
 
-def getattr_(name: str, default: __ReturnType) -> Callable[[object], Any | __ReturnType]:
+
+def getattr_(name: str, default: __Retur) -> Callable[[object], __ReturnType]:
     return partial(getattr, name)
+
 
 @curry
 def if_then_else(
@@ -47,7 +49,8 @@ def if_then_else(
 
 @curry
 def if_then(
-    condition: Callable[[__ArgumentType], bool], f: Callable[[__ArgumentType], __ReturnTypeThen]
+    condition: Callable[[__ArgumentType], bool],
+    f: Callable[[__ArgumentType], __ReturnTypeThen],
 ):
     return partial(if_then_else, condition, f, identity)
 
