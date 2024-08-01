@@ -8,12 +8,11 @@ Curried and point-free versions of the Python standard libraries functions and m
 * Point-free style of functions and methods for better composition
 * All implementations are encapsulations of upstream library
 
-<!-- 
 ## Installation
 
- ```shell
+```shell
 pip install curripy
-``` -->
+```
 
 ## Build
 
@@ -24,7 +23,7 @@ rye sync
 rye build
 ```
 
-Then check the build results in directory ```dist```, then install ```curripy``` from them.
+Then check the build results in directory ```dist```. You can install ```curripy``` from them.
 
 ## Dependencies
 
