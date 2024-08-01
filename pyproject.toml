@@ -13,6 +13,13 @@ dependencies = [
 readme = "README.md"
 requires-python = ">= 3.8"
 
+[project.urls]
+# Homepage = "https://example.com"
+# Documentation = "https://curripy.readthedocs.org"
+Repository = "https://github.com/Lehmaning/curripy/"
+Issues = "https://github.com/Lehmaning/curripy/issues"
+# Changelog = "https://github.com/Lehmaning/curripy/blob/master/CHANGELOG.md"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
