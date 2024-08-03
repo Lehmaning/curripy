@@ -27,6 +27,6 @@ Then check the build results in directory ```dist```. You can install ```curripy
 
 ## Dependencies
 
-* [dry-python/returns](https://github.com/dry-python/returns): Provides support for currying, pipes (composing) and Functors
+* [dry-python/returns](https://github.com/dry-python/returns): Provides support for pipes (composing) and Functors
 * [dry-python/classes](https://github.com/dry-python/classes): Brings support for typeclasses
 * [dgilland/pydash](https://github.com/dgilland/pydash): Adds support for currying, composing, arity and curry_right
