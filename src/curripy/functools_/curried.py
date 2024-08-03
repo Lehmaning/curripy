@@ -1,9 +1,10 @@
-from functools import partialmethod, partial, reduce as reduce_
+from functools import reduce as reduce_
 from typing import Callable, Iterable
-from operator import attrgetter
 from returns.curry import curry
 
-__all__ = ["reduce"]
+__all__ = [
+    "reduce",
+]
 
 
 @curry

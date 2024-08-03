@@ -2,7 +2,7 @@ from functools import partialmethod, partial
 from typing import Callable, Iterable
 from operator import attrgetter
 
-__all__ = []
+__all__ = ["get_partial_func", "get_partial_args", "get_partial_keywords"]
 
 get_partial_func: Callable[[partial | partialmethod], Callable] = attrgetter("func")
 get_partial_args: Callable[[partial | partialmethod], Iterable] = attrgetter("args")

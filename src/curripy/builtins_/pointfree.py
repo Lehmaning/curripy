@@ -1,7 +1,9 @@
-from typing import Callable, TypeVar
+from typing import Callable, TypeVar, Any
 
 from ..functionalize_tools import curry, curry_right, identity, partial, tap
 from ..operator_.pointfree import pass_arg
+
+from ..typeclasses import split
 
 __all__ = [
     "print_",
@@ -14,27 +16,21 @@ __all__ = [
     "if_",
     "then_",
     "else_",
+    "__split_str",
 ]
 
-
-__ArgumentType = TypeVar("__ArgumentType")
-__ReturnType = TypeVar("__ReturnType")
-__ReturnTypeThen = TypeVar("__ReturnTypeThen")
-__ReturnTypeElse = TypeVar("__ReturnTypeElse")
-
-isinstance_ = curry_right(isinstance, arity=2)
-issubclass_ = curry_right(issubclass, arity=2)
+# exported functions
 hasattr_ = curry_right(hasattr)
 print_ = tap(print)
 globals_ = tap(globals)
 help_ = tap(help)
 input_ = tap(input)
-setattr_ = curry_right(setattr)
 vars_ = tap(vars)
 
-
-def getattr_(name: str, default: __ReturnType | None = None) -> Callable[[object], __ReturnType | None]:
-    return partial(getattr, name)
+__ArgumentType = TypeVar("__ArgumentType")
+__ReturnType = TypeVar("__ReturnType")
+__ReturnTypeThen = TypeVar("__ReturnTypeThen")
+__ReturnTypeElse = TypeVar("__ReturnTypeElse")
 
 
 @curry
@@ -61,3 +57,24 @@ def if_(condition) -> Callable:
 
 then_ = pass_arg
 else_ = pass_arg
+
+# functions which are not exported by default
+isinstance_ = curry_right(isinstance, arity=2)
+issubclass_ = curry_right(issubclass, arity=2)
+
+
+@curry
+def setattr_(name: str, value: Any) -> Callable[[object], None]:
+    return partial(setattr, name, value)
+
+
+@curry
+def getattr_(
+    name: str, default: __ReturnType | None = None
+) -> Callable[[object], __ReturnType | None]:
+    return partial(getattr, name, default=default)
+
+
+@split.instance(str)
+def __split_str(instance: str, /, sep: str | None = None, maxsplit=-1):
+    return instance.split(sep=sep, maxsplit=maxsplit)
