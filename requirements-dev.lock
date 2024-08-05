@@ -12,14 +12,12 @@
 asttokens==2.4.1
     # via stack-data
 autoflake==2.3.1
-classes==0.4.1
-    # via curripy
 colorama==0.4.6
     # via ipython
     # via pytest
 comm==0.2.2
     # via ipykernel
-debugpy==1.8.2
+debugpy==1.8.3
     # via ipykernel
 decorator==5.1.1
     # via ipython
@@ -27,8 +25,8 @@ executing==2.0.1
     # via stack-data
 iniconfig==2.0.0
     # via pytest
-ipykernel==6.29.4
-ipython==8.25.0
+ipykernel==6.29.5
+ipython==8.26.0
     # via ipykernel
 jedi==0.19.1
     # via ipython
@@ -59,15 +57,13 @@ prompt-toolkit==3.0.47
     # via ipython
 psutil==6.0.0
     # via ipykernel
-pure-eval==0.2.2
+pure-eval==0.2.3
     # via stack-data
-pydash==8.0.1
-    # via curripy
 pyflakes==3.2.0
     # via autoflake
 pygments==2.18.0
     # via ipython
-pytest==8.2.2
+pytest==8.3.2
 python-dateutil==2.9.0.post0
     # via jupyter-client
 pywin32==306
@@ -76,7 +72,6 @@ pyzmq==26.0.3
     # via ipykernel
     # via jupyter-client
 returns==0.23.0
-    # via curripy
 six==1.16.0
     # via asttokens
     # via python-dateutil
@@ -93,9 +88,7 @@ traitlets==5.14.3
     # via jupyter-core
     # via matplotlib-inline
 typing-extensions==4.12.2
-    # via classes
     # via mypy
-    # via pydash
     # via returns
 wcwidth==0.2.13
     # via prompt-toolkit
