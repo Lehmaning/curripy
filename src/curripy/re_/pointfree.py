@@ -1,6 +1,7 @@
 import re
-from ..functionalize_tools import partial
+from curripy.utils import curry
 
+__all__ = []
 
 def search(pattern, flags=0):
-    return partial(re.search, pattern, flags=flags)
+    return curry(re.search)(pattern, flags=flags)

@@ -1,9 +1,7 @@
 from typing import Callable, TypeVar, Any
 
-from ..functionalize_tools import curry, curry_right, identity, partial, tap
+from ..utils import curry, curry_right, partial, tap, identity
 from ..operator_.pointfree import pass_arg
-
-from ..typeclasses import split
 
 __all__ = [
     "print_",
@@ -16,7 +14,6 @@ __all__ = [
     "if_",
     "then_",
     "else_",
-    "__split_str",
 ]
 
 # exported functions
@@ -48,7 +45,7 @@ def if_then(
     condition: Callable[[__ArgumentType], bool],
     f: Callable[[__ArgumentType], __ReturnTypeThen],
 ):
-    return partial(if_then_else, condition, f, identity)
+    return if_then_else(condition)(f)(identity)
 
 
 def if_(condition) -> Callable:
@@ -69,12 +66,5 @@ def setattr_(name: str, value: Any) -> Callable[[object], None]:
 
 
 @curry
-def getattr_(
-    name: str, default: __ReturnType | None = None
-) -> Callable[[object], __ReturnType | None]:
+def getattr_(name: str, default):
     return partial(getattr, name, default=default)
-
-
-@split.instance(str)
-def __split_str(instance: str, /, sep: str | None = None, maxsplit=-1):
-    return instance.split(sep=sep, maxsplit=maxsplit)

@@ -1,0 +1,1 @@
+from curripy.utils import partial

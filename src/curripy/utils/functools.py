@@ -1,21 +1,10 @@
-"""
-Attention: This module is not in use. Just written for experiments.
-"""
-
-from typing import Callable, Iterable
-from functools import reduce
-
-
-def pass_arg(arg, obj: Callable):
-    return obj(arg)
-
-
 __initial_missing = object()
 
-
-def reduce_generator(function, sequence: Iterable, initial=__initial_missing):
+def reduce_generator(func, sequence, initial=__initial_missing):
     """
-    reduce(function, iterable[, initial]) -> value
+    This is a modified version of functools.reduce which returns a generator.
+    To get the last result of the function, consider to use:
+    *_, x = reduce_generator(...)
 
     Apply a function of two arguments cumulatively to the items of a sequence
     or iterable, from left to right, so as to reduce the iterable to a single
@@ -31,19 +20,5 @@ def reduce_generator(function, sequence: Iterable, initial=__initial_missing):
         raise TypeError("reduce() of empty iterable with no initial value") from None
     else:
         for element in it:
-            value = function(value, element)
+            value = func(value, element)
             yield value
-
-
-def pipe(*functions):
-    def reducer(instance):
-        return reduce(pass_arg, functions, instance)
-
-    return reducer
-
-
-def pipe_generator(*functions):
-    def reducer(instance):
-        return reduce_generator(pass_arg, functions, instance)
-
-    return reducer

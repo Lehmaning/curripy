@@ -1,12 +1,11 @@
-from typing import Callable
-
-from ..functionalize_tools import curry_right
+from ..utils import curry
 
 __all__ = [
     "pass_arg",
 ]
 
+@curry
+def pass_arg(arg, obj, *args, **kwargs):
+    """Same as obj(arg)."""
+    return obj(arg, *args, **kwargs)
 
-def pass_arg(arg, obj: Callable):
-    """Same as obj(*args, **kwargs)."""
-    return obj(arg)
