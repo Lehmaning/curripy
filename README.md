@@ -23,10 +23,10 @@ rye sync
 rye build
 ```
 
-Then check the build results in directory ```dist```. You can install ```curripy``` from them.
+Then check the build results in directory ``dist``. You can install ``curripy`` from them.
 
-## Dependencies
+## See Also
 
-* [dry-python/returns](https://github.com/dry-python/returns): Provides support for pipes (composing) and Functors
+* [dry-python/returns](https://github.com/dry-python/returns): Provides support for curry, pipes and Functors
 * [dry-python/classes](https://github.com/dry-python/classes): Brings support for typeclasses
 * [dgilland/pydash](https://github.com/dgilland/pydash): Adds support for currying, composing, arity and curry_right
