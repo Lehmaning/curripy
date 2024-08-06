@@ -5,7 +5,9 @@ description = "Curried / Point-free versions of the Python standard libraries fu
 authors = [
     { name = "Lehmaning", email = "60032845+Lehmaning@users.noreply.github.com" }
 ]
-dependencies = []
+dependencies = [
+    "typing-extensions>=4.12.2",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 

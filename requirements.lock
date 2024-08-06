@@ -9,3 +9,5 @@
 #   generate-hashes: false
 
 -e file:.
+typing-extensions==4.12.2
+    # via curripy
