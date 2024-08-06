@@ -1,9 +1,9 @@
-from typing import TypeGuard, overload, Callable, TypeAlias, TypeVar
+from typing import Iterable, Iterable, TypeGuard, overload, Callable, TypeAlias, TypeVar
 from types import UnionType
+from typing_extensions import TypeIs
 import sys
-
-ReturnType = TypeVar("ReturnType")
-ParamType = TypeVar("ParamType")
+from ..utils import curry, partial
+from ..__generics import ParamType2, ParamType1, ParamType
 
 if sys.version_info >= (3, 10):
     _ClassInfo: TypeAlias = type | UnionType | tuple[_ClassInfo, ...]
@@ -11,12 +11,5 @@ if sys.version_info >= (3, 10):
 else:
     _ClassInfo: TypeAlias = type | tuple[_ClassInfo, ...]
 
-def isinstance_(
-    obj: object,
-) -> Callable[[_ClassInfo], bool]:
-    def class_or_tuple(class_or_tuple: _ClassInfo) -> bool: ...
-    return class_or_tuple
-
-def issubclass_(cls: type) -> Callable[[_ClassInfo], bool]: ...
-def filter_(func: Callable[[ParamType], ReturnType] | None): ...
-def map_(func: Callable[[ParamType], ReturnType] | None): ...
+def isinstance_(obj: object) -> Callable[[_ClassInfo], TypeIs[_ClassInfo]]: ...
+def issubclass_(cls: type) -> Callable[[_ClassInfo], TypeIs[_ClassInfo]]: ...

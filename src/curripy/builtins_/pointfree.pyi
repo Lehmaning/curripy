@@ -1,7 +1,6 @@
-from typing import TypeGuard, overload, Callable, TypeAlias, TypeVar
-from types import UnionType
-import sys
-from ..__generics import ParamType, ReturnType
+from ..utils import curry_right, tap, curry
+from ..__generics import ReturnType
+from typing import overload, Callable, Any
 
 __all__ = [
     "hasattr_",
@@ -9,25 +8,14 @@ __all__ = [
     "help_",
 ]
 
-if sys.version_info >= (3, 10):
-    _ClassInfo: TypeAlias = type | UnionType | tuple[_ClassInfo, ...]
-    """a simulated type to the one with the same name in builtins.pyi"""
-else:
-    _ClassInfo: TypeAlias = type | tuple[_ClassInfo, ...]
+# exported functions
+hasattr_ = curry_right(hasattr)
+print_ = tap(print)
+help_ = tap(help)
 
-@overload
-def isinstance_(
-    class_or_tuple: type[int],
-) -> Callable[[object], TypeGuard[int]]: ...
-@overload
-def isinstance_(
-    class_or_tuple: type[str],
-) ->  Callable[[object], TypeGuard[str]]: ...
-@overload
-def isinstance_(
-    class_or_tuple: _ClassInfo,
-) -> Callable[[object], bool]:
-    def __obj(obj: object) -> bool: ...
-    return __obj
+# functions which are not exported by default
+isinstance_ = curry_right(isinstance, arity=2)
+issubclass_ = curry_right(issubclass, arity=2)
 
-def issubclass_(cls: type) -> Callable[[_ClassInfo], bool]: ...
+def setattr_(name: str) -> Callable[[Any], Callable[[object], None]]: ...
+def getattr_(name: str, default: ReturnType) -> Callable[[object], ReturnType]: ...

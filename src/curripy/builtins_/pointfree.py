@@ -1,5 +1,3 @@
-from typing import Callable, Any
-
 from ..utils import curry, curry_right, partial, tap
 
 __all__ = [
@@ -19,10 +17,10 @@ issubclass_ = curry_right(issubclass, arity=2)
 
 
 @curry
-def setattr_(name: str, value: Any) -> Callable[[object], None]:
+def setattr_(name: str, value):
     return partial(setattr, name, value)
 
 
 @curry
-def getattr_(name: str, default):
+def getattr_(name: str, default = None):
     return partial(getattr, name, default=default)
