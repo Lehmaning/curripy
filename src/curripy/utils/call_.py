@@ -3,7 +3,8 @@ def pass_arg_(arg, func, *args, **kwargs):
 
 
 def pass_arg(arg):
-    def __pass_arg(obj):
-        return obj(arg)
+    def caller(func):
+        nonlocal arg
+        return func(arg)
 
-    return __pass_arg
+    return caller

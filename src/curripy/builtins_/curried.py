@@ -1,6 +1,6 @@
-from typing import Any, Callable, Iterable, TypeVar
+from typing import Any, Callable, TypeVar
 
-from curripy.utils import curry, partial
+from ..utils import curry, partial, map_, filter_
 
 __all__ = [
     "isinstance_",
@@ -24,14 +24,6 @@ divmod_ = curry(divmod)
 
 def next_(default):
     return partial(next, default)
-
-def filter_(func: Callable[[ParamType], ReturnType] | None):
-    return partial(filter, func)
-
-def map_(
-    func: Callable[[ParamType], ReturnType],
-):
-    return partial(map, func)
 
 
 @curry

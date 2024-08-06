@@ -1,3 +1,4 @@
+from operator import methodcaller
 def filter_(func):
     def caller(iterable):
         return filter(func, iterable)
@@ -8,3 +9,7 @@ def map_(func):
         return map(func, *iterables)
 
     return caller
+
+
+call_method_values = methodcaller("values")
+{"a":1}.values()

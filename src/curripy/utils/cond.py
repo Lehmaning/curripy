@@ -1,30 +1,29 @@
-from ..utils.partial_ import partial
-from ..utils.curry_ import curry
-from .pass_arg import pass_arg
-from ..utils.identity_ import identity
+from .call_ import pass_arg
+from .curry_ import curry
+from .identity_ import identity
+from .partial_ import partial
 
 __all__ = ["if_then_else", "if_then", "if_", "then", "else_"]
 
+
 def if_then_else_(
-    cond,
+    c,
     f,
-    else_,
+    e,
     x,
 ):
-    return f(x) if cond(x) else else_(x)
-
-
-if_then_else = curry(if_then_else_)
+    return f(x) if c(x) else e(x)
 
 
 def if_then_(
-    cond,
+    c,
     f,
 ):
-    return partial(if_then_else_, cond, f, identity)
-if_then = curry(if_then_)
+    return partial(if_then_else_, c, f, identity)
 
-def if_(cond):
-    return if_then_else(cond)
+
+if_then_else = curry(if_then_else_)
+if_then = curry(if_then_)
+if_ = if_then_else
 then = pass_arg
 else_ = pass_arg

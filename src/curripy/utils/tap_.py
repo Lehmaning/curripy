@@ -1,10 +1,10 @@
 __all__ = ["tap"]
-def tap(
-    func
-):
-    def caller(*args, **kwargs):
+
+
+def tap(func):
+    def caller(arg, **kwargs):
         nonlocal func
-        func(*args, **kwargs)
-        return args
+        func(arg, **kwargs)
+        return arg
 
     return caller

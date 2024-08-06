@@ -2,7 +2,7 @@
 This module is used for code refactoring or experiments on new feature.
 """
 
-from curripy.utils.inspect_ import len_of_non_default_params
+from .inspect_ import len_of_non_default_params
 
 __all__ = ["curry"]
 

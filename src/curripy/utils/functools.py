@@ -1,3 +1,5 @@
+from functools import partial
+
 __initial_missing = object()
 
 def reduce_generator(func, sequence, initial=__initial_missing):
@@ -22,3 +24,7 @@ def reduce_generator(func, sequence, initial=__initial_missing):
         for element in it:
             value = func(value, element)
             yield value
+
+
+def get_args(obj: partial):
+    return obj.args

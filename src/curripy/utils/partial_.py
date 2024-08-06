@@ -3,7 +3,7 @@ from functools import partial as partial_
 __all__ = ["partial"]
 
 
-def partial_wrapper(
+def partial_func(
     func,
     *args,
     **kwargs,
@@ -12,7 +12,7 @@ def partial_wrapper(
 
 
 def partial(func, *args, **kwargs):
-    def apply(*passing_args, **passing_kwargs):
+    def caller(*passing_args, **passing_kwargs):
         nonlocal args
         nonlocal kwargs
         nonlocal func
@@ -20,4 +20,4 @@ def partial(func, *args, **kwargs):
         apply_kwargs = kwargs | passing_kwargs
         return func(*apply_args, **apply_kwargs)
 
-    return apply
+    return caller
