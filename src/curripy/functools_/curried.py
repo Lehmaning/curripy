@@ -1,6 +1,6 @@
 from functools import reduce as reduce_
 from typing import Callable, Iterable
-from returns.curry import curry
+from ..utils import curry
 
 __all__ = [
     "reduce",
