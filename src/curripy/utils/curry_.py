@@ -1,6 +1,10 @@
 from .inspect_ import len_of_non_default_params
-from .partial_ import partial
+from functools import partial
 
+__all__ = [
+    "curry",
+    "curry_right",
+]
 
 def curry(
     func,

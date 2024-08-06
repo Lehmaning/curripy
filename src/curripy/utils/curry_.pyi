@@ -15,6 +15,11 @@ from ..__generics import (
     ReturnType,
 )
 
+__all__ = [
+    "curry",
+    "curry_right",
+]
+
 @overload
 def curry(
     func: Callable[[ParamType1], ReturnType],
@@ -62,13 +67,13 @@ def curry(
 ]: ...
 @overload
 def curry(
-    func: Callable[Concatenate[ParamType1, P], ReturnType],
+    func: Callable[[ParamType1], ReturnType],
     arity: Literal[1],
     **kwargs,
 ) -> Callable[[ParamType1], ReturnType]: ...
 @overload
 def curry(
-    func: Callable[Concatenate[ParamType1, ParamType2, P], ReturnType],
+    func: Callable[[ParamType1, ParamType2], ReturnType],
     arity: Literal[2],
     **kwargs,
 ) -> Callable[[ParamType1], Callable[[ParamType2], ReturnType]]: ...
