@@ -1,9 +1,18 @@
 from .call_ import pass_arg
 from .curry_ import curry
 from .identity_ import identity
-from .partial_ import partial
 
-__all__ = ["if_then_else", "if_then", "if_", "then", "else_"]
+from functools import partial
+
+__all__ = [
+    "if_then_else",
+    "if_then",
+    "if_then_else_",
+    "if_then_",
+    "if_",
+    "then",
+    "else_",
+]
 
 
 def if_then_else_(
