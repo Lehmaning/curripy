@@ -1,9 +1,11 @@
 from functools import lru_cache
 from inspect import Parameter, Signature, signature
-from operator import is_, itemgetter, not_
+from operator import is_not, itemgetter
+
+from .builtins_ import call_method_values, filter_
 from .compose_ import pipe
+from .operator_ import is_
 from .partial_ import partial
-from .builtins_ import call_method_values
 
 
 def get_parameters(sig: Signature):
@@ -23,14 +25,17 @@ param_var_args: Parameter = pipe(signature_parameters, itemgetter("args"))(dummy
 param_var_kwargs: Parameter = pipe(signature_parameters, itemgetter("kwargs"))(dummy)
 
 is_empty = partial(is_, Signature.empty)
-not_var_args = pipe(partial(is_, param_var_args), not_)
-not_var_kwargs = pipe(partial(is_, param_var_kwargs), not_)
+not_var_args = partial(is_not, param_var_args)
+not_var_kwargs = partial(is_not, param_var_kwargs)
+
+filter_out_var_args = filter_(not_var_args)
+filter_out_var_kwargs = filter_(not_var_kwargs)
+
 not_have_default = pipe(get_default, is_empty)
-filter_out_default_params = partial(filter, not_have_default)
-filter_out_var_args = partial(filter, not_var_args)
-filter_out_var_kwargs = partial(filter, not_var_kwargs)
-get_len_of_args = lru_cache()(pipe(signature_parameters, len))
-all_params = lru_cache()(pipe(signature_parameters, call_method_values))
+filter_out_default_params = filter_( not_have_default)
+
+get_len_of_args = pipe(signature_parameters, len)
+all_params = pipe(signature_parameters, call_method_values)
 non_default_params = pipe(
         all_params,
         filter_out_default_params,
