@@ -1,4 +1,7 @@
 from operator import methodcaller
+
+__all__ = ["filter_", "map_", "call_method_values"]
+
 def filter_(func):
     def caller(iterable):
         return filter(func, iterable)
@@ -10,6 +13,4 @@ def map_(func):
 
     return caller
 
-
 call_method_values = methodcaller("values")
-{"a":1}.values()

@@ -1,6 +1,7 @@
 from typing import Any, Callable, TypeVar
 
-from ..utils import curry, partial, map_, filter_
+from ..utils import curry, partial
+from ..utils.builtins_ import map_, filter_, call_method_values
 
 __all__ = [
     "isinstance_",
@@ -11,6 +12,7 @@ __all__ = [
     "map_",
     "filter_",
     "next_",
+    "call_method_values",
 ]
 
 
