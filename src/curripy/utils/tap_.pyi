@@ -2,8 +2,8 @@ from typing import Concatenate, Callable
 from ..__generics import ParamType, P
 
 def tap(
-    func: Callable[Concatenate[ParamType, P], None],
-) -> Callable[Concatenate[ParamType, P], ParamType]:
+    func: Callable[[ParamType], None],
+) -> Callable[[ParamType], ParamType]:
     """
     To call the function and return its first argument instead of its result.
     It is a typing-improved version that is inspired by dry-python/returns.

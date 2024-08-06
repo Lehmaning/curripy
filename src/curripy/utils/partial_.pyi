@@ -1,4 +1,13 @@
-from typing import Any, Callable, ParamSpec, TypeVar, overload
+from typing import (
+    Iterable,
+    TypeGuard,
+    Sequence,
+    Any,
+    Callable,
+    ParamSpec,
+    TypeVar,
+    overload,
+)
 from ..__generics import (
     P,
     ReturnType,
@@ -17,9 +26,13 @@ def partial(
 ) -> Callable[[ParamType1], ReturnType]: ...
 @overload
 def partial(
-    func: Callable[[ParamType1, ParamType2], ReturnType],
-    arg1: ParamType1,
-    **kwargs: Any,
+    func: type[filter[Any]],
+    arg1: Callable[[ParamType1], bool | TypeGuard[ParamType1]] | None,
+    **kwargs,
+) -> Callable[[Iterable[ParamType1 | None]], filter[ParamType1]]: ...
+@overload
+def partial(
+    func: Callable[[ParamType1, ParamType2], ReturnType], arg1: ParamType1, **kwargs
 ) -> Callable[[ParamType2], ReturnType]: ...
 @overload
 def partial(

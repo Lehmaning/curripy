@@ -1,7 +1,6 @@
 from typing import TypeAlias, ParamSpec, Callable, TypeVar, overload, Union
 
 P = ParamSpec("P")
-BuiltinType: TypeAlias = int | str | float | tuple | list | dict | map | dict
 ArgumentType = TypeVar("ArgumentType")
 ReturnType1 = TypeVar("ReturnType1")
 ReturnType2 = TypeVar("ReturnType2")

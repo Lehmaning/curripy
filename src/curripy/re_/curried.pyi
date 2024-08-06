@@ -1,6 +1,9 @@
-from typing import Concatenate, ParamSpec, Match, AnyStr, Callable
+import re
 from re import Pattern
+from typing import AnyStr
 
-P = ParamSpec("P")
+__all__ = ["search"]
 
-search: Callable[Concatenate[AnyStr | Pattern[AnyStr], P], Callable[[str], Match]]
+def search(
+    pattern: str | Pattern[AnyStr], flags: int = 0
+): ...

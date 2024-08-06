@@ -1,20 +1,25 @@
-from typing import TypeAlias, TypeVar, Callable
-from ..__generics import ParamType, ReturnType1, ReturnType2
+from typing import TypeVar, Callable
+from ..__generics import ParamType
+from .curry_ import curry
+from .call_ import pass_arg
 
-ReturnTypeThen: TypeAlias = ReturnType1
-ReturnTypeElse: TypeAlias = ReturnType2
-def if_then_else(
-    condition: Callable[[ParamType], bool],
+ReturnTypeThen = TypeVar("ReturnTypeThen")
+ReturnTypeElse = TypeVar("ReturnTypeElse")
+
+def if_then_else_(
+    c: Callable[[ParamType], bool],
     f: Callable[[ParamType], ReturnTypeThen],
-    else_: Callable[[ParamType], ReturnTypeElse],
+    e: Callable[[ParamType], ReturnTypeElse],
     x: ParamType,
 ) -> ReturnTypeThen | ReturnTypeElse: ...
 
-def if_then(
-    condition: Callable[[ParamType], bool],
+def if_then_(
+    c: Callable[[ParamType], bool],
     f: Callable[[ParamType], ReturnTypeThen],
 ) -> Callable[[ParamType], ParamType | ReturnTypeThen]: ...
 
-def if_(condition: Callable[[ParamType], bool]): ...
-def else_(condition: Callable[[ParamType], bool]): ...
-def then(f: Callable[[ParamType], ReturnTypeThen]) -> Callable: ...
+if_then_else = curry(if_then_else_)
+if_then = curry(if_then_)
+if_ = if_then_else
+then = pass_arg
+else_ = pass_arg

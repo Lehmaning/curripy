@@ -1,9 +1,25 @@
-from typing import Concatenate, Callable, Iterable
-from ..__generics import ParamType, ReturnType, P
+from typing import (
+    TypeVar,
+    MutableMapping,
+    overload,
+    Mapping,
+)
+from _collections_abc import ValuesView, dict_values
+from ..utils import curry
 
-def filter_(
-    func: Callable[[ParamType], ReturnType] | None,
-) -> Callable[[Iterable[ParamType]], filter[ReturnType]]: ...
-def map_(
-    func: Callable[[ParamType], ReturnType] | None,
-) -> Callable[Concatenate[Iterable[ParamType], P], filter[ReturnType]]: ...
+KeyType = TypeVar("KeyType")
+ValueType = TypeVar("ValueType")
+
+filter_ = curry(filter)
+map_ = curry(map)
+
+@overload
+def call_method_values(
+    d: dict[KeyType, ValueType],
+) -> dict_values[KeyType, ValueType]: ...
+@overload
+def call_method_values(
+    d: MutableMapping[KeyType, ValueType],
+) -> ValuesView[ValueType]: ...
+@overload
+def call_method_values(d: Mapping[KeyType, ValueType]) -> ValuesView[ValueType]: ...
