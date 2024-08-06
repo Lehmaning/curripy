@@ -1,14 +1,4 @@
-from functools import partial as partial_
-
 __all__ = ["partial"]
-
-
-def partial_func(
-    func,
-    *args,
-    **kwargs,
-):
-    return partial_(func, *args, **kwargs)
 
 
 def partial(func, *args, **kwargs):
