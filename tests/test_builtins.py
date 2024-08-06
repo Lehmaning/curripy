@@ -30,4 +30,5 @@ def test_if_then_else():
 
     cond_single = if_then_else(eq(2))(lambda x: 1)(lambda x: 0)
 
-    assert cond_flow(1 + 1) is True and cond_flow(1 + 1) == cond_single(1 + 1)
+    assert cond_single(1 + 1) == 1
+    assert cond_flow(1 + 1) == 1
