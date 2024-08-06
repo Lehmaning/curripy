@@ -1,4 +1,4 @@
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 from ..utils import curry, partial
 from ..utils.builtins_ import map_, filter_, call_method_values
