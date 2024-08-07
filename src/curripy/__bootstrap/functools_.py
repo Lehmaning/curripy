@@ -1,12 +1,10 @@
-from functools import partial
-
-__initial_missing = object()
+from ..__dummies.obj import obejct_ as __initial_missing
 
 def reduce_generator(func, sequence, initial=__initial_missing):
     """
     This is a modified version of functools.reduce which returns a generator.
     To get the last result of the function, consider to use:
-    *_, x = reduce_generator(...)
+    >>> *_, x = reduce_generator(...)
 
     Apply a function of two arguments cumulatively to the items of a sequence
     or iterable, from left to right, so as to reduce the iterable to a single
@@ -24,7 +22,3 @@ def reduce_generator(func, sequence, initial=__initial_missing):
         for element in it:
             value = func(value, element)
             yield value
-
-
-def get_args(obj: partial):
-    return obj.args

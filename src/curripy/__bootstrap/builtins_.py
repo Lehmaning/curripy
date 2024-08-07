@@ -1,6 +1,6 @@
 from operator import methodcaller
 
-__all__ = ["filter_", "map_", "call_method_values"]
+__all__ = ["filter_", "map_", "values"]
 
 def filter_(func):
     def caller(iterable):
@@ -13,4 +13,4 @@ def map_(func):
 
     return caller
 
-call_method_values = methodcaller("values")
+values = methodcaller("values")

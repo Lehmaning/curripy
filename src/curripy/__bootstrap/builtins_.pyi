@@ -1,5 +1,5 @@
 from _collections_abc import ValuesView, dict_values
-from typing import Callable, Iterable, Mapping, MutableMapping, TypeVar, overload
+from typing import Any, Any, Callable, Iterable, Mapping, MutableMapping, TypeVar, overload
 
 from typing_extensions import TypeIs
 
@@ -20,18 +20,18 @@ def filter_(
 ) -> Callable[[Iterable[ParamType2]], filter[ParamType1]]: ...
 @overload
 def filter_(
-    func: Callable[[ParamType], bool]
-) -> Callable[[Iterable[ParamType]], filter]: ...
+    func: Callable[[ParamType], Any]
+) -> Callable[[Iterable[ParamType]], filter[Any]]: ...
 
 map_ = curry(map)
 
 @overload
-def call_method_values(
+def values(
     d: dict[KeyType, ValueType],
 ) -> dict_values[KeyType, ValueType]: ...
 @overload
-def call_method_values(
+def values(
     d: MutableMapping[KeyType, ValueType],
 ) -> ValuesView[ValueType]: ...
 @overload
-def call_method_values(d: Mapping[KeyType, ValueType]) -> ValuesView[ValueType]: ...
+def values(d: Mapping[KeyType, ValueType]) -> ValuesView[ValueType]: ...
