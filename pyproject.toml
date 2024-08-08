@@ -7,6 +7,7 @@ authors = [
 ]
 dependencies = [
     "typing-extensions>=4.12.2",
+    "classes>=0.4.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -25,7 +26,7 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "mypy>=1.10.1",
+    "mypy==0.971",
     "autoflake>=2.3.1",
     "pytest>=8.2.2",
 ]

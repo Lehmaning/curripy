@@ -10,11 +10,13 @@
 
 -e file:.
 autoflake==2.3.1
+classes==0.4.1
+    # via curripy
 colorama==0.4.6
     # via pytest
 iniconfig==2.0.0
     # via pytest
-mypy==1.10.1
+mypy==0.971
 mypy-extensions==1.0.0
     # via mypy
 packaging==24.1
@@ -25,5 +27,6 @@ pyflakes==3.2.0
     # via autoflake
 pytest==8.3.2
 typing-extensions==4.12.2
+    # via classes
     # via curripy
     # via mypy
