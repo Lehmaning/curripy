@@ -1,15 +1,24 @@
-from typing import Iterable, Iterable, TypeGuard, overload, Callable, TypeAlias, TypeVar
-from types import UnionType
 from typing_extensions import TypeIs
-import sys
-from ..utils import curry, partial
-from ..__generics import ParamType2, ParamType1, ParamType
 
-if sys.version_info >= (3, 10):
-    _ClassInfo: TypeAlias = type | UnionType | tuple[_ClassInfo, ...]
-    """a simulated type to the one with the same name in builtins.pyi"""
-else:
-    _ClassInfo: TypeAlias = type | tuple[_ClassInfo, ...]
+from ..utils import curry
 
-def isinstance_(obj: object) -> Callable[[_ClassInfo], TypeIs[_ClassInfo]]: ...
-def issubclass_(cls: type) -> Callable[[_ClassInfo], TypeIs[_ClassInfo]]: ...
+from ..__bootstrap.builtins_ import map_, filter_
+from ..dummies.type import _ClassInfo
+
+__all__ = [
+    "divmod_",
+    "map_",
+    "filter_",
+]
+
+issubclass_ = curry(issubclass)
+divmod_ = curry(divmod)
+
+@curry
+def isinstance_(
+    obj: object,
+    class_or_tuple: _ClassInfo,
+) -> TypeIs[_ClassInfo]: ...
+
+getattr_ = curry(getattr)
+setattr_ = curry(setattr)

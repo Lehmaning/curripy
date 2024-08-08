@@ -1,70 +1,81 @@
-from typing import TypeAlias, ParamSpec, Callable, TypeVar, overload, Union
+from typing import Callable, overload
 
-P = ParamSpec("P")
-ArgumentType = TypeVar("ArgumentType")
-ReturnType1 = TypeVar("ReturnType1")
-ReturnType2 = TypeVar("ReturnType2")
-ReturnType3 = TypeVar("ReturnType3")
-ReturnType4 = TypeVar("ReturnType4")
-ReturnType5 = TypeVar("ReturnType5")
+from ..__generics import (
+    ArgKwargP,
+    ParamT,
+    ReturnT,
+    ReturnT1,
+    ReturnT2,
+    ReturnT3,
+    ReturnT4,
+    ReturnT5,
+)
 
+__all__ = ["cdot", "dot", "compose", "pipe"]
+
+def cdot(
+    f: Callable[[ParamT], ReturnT1],
+) -> Callable[[Callable[[ReturnT1], ReturnT2]], ReturnT2]: ...
+def dot(
+    f: Callable[[ParamT], ReturnT1], g: Callable[[ReturnT1], ReturnT2]
+) -> Callable[[ParamT], ReturnT2]: ...
 @overload
 def pipe(
-    func1: Callable[P, ReturnType1],
-) -> Callable[P, ReturnType1]: ...
+    func1: Callable[ArgKwargP, ReturnT1],
+) -> Callable[ArgKwargP, ReturnT1]: ...
 @overload
 def pipe(
-    func1: Callable[[ArgumentType], ReturnType2],
-    func2: Callable[[ReturnType2], ReturnType1],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func1: Callable[[ParamT], ReturnT1],
+    func2: Callable[[ReturnT1], ReturnT2],
+) -> Callable[[ParamT], ReturnT2]: ...
 @overload
 def pipe(
-    func1: Callable[[ArgumentType], ReturnType2],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func3: Callable[[ReturnType3], ReturnType1],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func1: Callable[[ParamT], ReturnT1],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func3: Callable[[ReturnT2], ReturnT3],
+) -> Callable[[ParamT], ReturnT3]: ...
 @overload
 def pipe(
-    func1: Callable[[ArgumentType], ReturnType2],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func3: Callable[[ReturnType3], ReturnType4],
-    func4: Callable[[ReturnType4], ReturnType1],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func1: Callable[[ParamT], ReturnT1],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func3: Callable[[ReturnT2], ReturnT3],
+    func4: Callable[[ReturnT3], ReturnT4],
+) -> Callable[[ParamT], ReturnT4]: ...
 @overload
 def pipe(
-    func1: Callable[[ArgumentType], ReturnType2],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func3: Callable[[ReturnType3], ReturnType4],
-    func4: Callable[[ReturnType4], ReturnType5],
-    func5: Callable[[ReturnType5], ReturnType1],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func1: Callable[[ParamT], ReturnT1],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func3: Callable[[ReturnT2], ReturnT3],
+    func4: Callable[[ReturnT3], ReturnT4],
+    func5: Callable[[ReturnT4], ReturnT5],
+) -> Callable[[ParamT], ReturnT5]: ...
 @overload
 def compose(
-    func1: Callable[[ArgumentType], ReturnType1],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func1: Callable[ArgKwargP, ReturnT],
+) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def compose(
-    func2: Callable[[ReturnType2], ReturnType1],
-    func1: Callable[[ArgumentType], ReturnType2],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func2: Callable[[ReturnT1], ReturnT2],
+    func1: Callable[[ParamT], ReturnT1],
+) -> Callable[[ParamT], ReturnT1]: ...
 @overload
 def compose(
-    func3: Callable[[ReturnType3], ReturnType1],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func1: Callable[[ArgumentType], ReturnType2],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func3: Callable[[ReturnT2], ReturnT3],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func1: Callable[[ParamT], ReturnT1],
+) -> Callable[[ParamT], ReturnT3]: ...
 @overload
 def compose(
-    func4: Callable[[ReturnType4], ReturnType1],
-    func3: Callable[[ReturnType3], ReturnType4],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func1: Callable[[ArgumentType], ReturnType2],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func4: Callable[[ReturnT3], ReturnT4],
+    func3: Callable[[ReturnT2], ReturnT3],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func1: Callable[[ParamT], ReturnT1],
+) -> Callable[[ParamT], ReturnT4]: ...
 @overload
 def compose(
-    func5: Callable[[ReturnType5], ReturnType1],
-    func4: Callable[[ReturnType4], ReturnType5],
-    func3: Callable[[ReturnType3], ReturnType4],
-    func2: Callable[[ReturnType2], ReturnType3],
-    func1: Callable[[ArgumentType], ReturnType2],
-) -> Callable[[ArgumentType], ReturnType1]: ...
+    func5: Callable[[ReturnT4], ReturnT5],
+    func4: Callable[[ReturnT3], ReturnT4],
+    func3: Callable[[ReturnT2], ReturnT3],
+    func2: Callable[[ReturnT1], ReturnT2],
+    func1: Callable[[ParamT], ReturnT1],
+) -> Callable[[ParamT], ReturnT5]: ...

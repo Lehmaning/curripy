@@ -1,13 +1,13 @@
-from .curry_ import curry
-from typing import Concatenate, Callable
-from ..__generics import ParamType, ReturnType, P
+from typing import Callable, Concatenate
+
+from ..__generics import ArgKwargP, ParamT, ReturnT
+from ..utils.curry_ import curry
 
 def pass_arg_(
-    arg,
-    func: Callable[Concatenate[ParamType, P], ReturnType],
-    *args: P.args,
-    **kwargs: P.kwargs,
-) -> ReturnType: ...
-def pass_arg(
-    arg: ParamType,
-) -> Callable[[Callable[[ParamType], ReturnType]], ReturnType]: ...
+    arg: ParamT,
+    func: Callable[Concatenate[ParamT, ArgKwargP], ReturnT],
+    *args: ArgKwargP.args,
+    **kwargs: ArgKwargP.kwargs,
+) -> ReturnT: ...
+
+def pass_arg(arg: ParamT) -> Callable[[Callable[[ParamT], ReturnT]], ReturnT]: ...

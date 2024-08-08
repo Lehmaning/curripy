@@ -1,8 +1,10 @@
-from typing import Literal, overload, TypeVar, Callable
-from functools import partial
-from ..__generics import ParamType
-from .curry_ import curry
+from typing import Callable, TypeVar
+
+from ..__generics import ParamT
+from ..__generics import ReturnT1 as ReturnThen
+from ..__generics import ReturnT2 as ReturnElse
 from .call_ import pass_arg
+from .curry_ import curry
 
 __all__ = [
     "if_then_else",
@@ -14,22 +16,19 @@ __all__ = [
     "else_",
 ]
 
-ReturnTypeThen = TypeVar("ReturnTypeThen")
-ReturnTypeElse = TypeVar("ReturnTypeElse")
-
 def if_then_else_(
-    c: Callable[[ParamType], bool],
-    f: Callable[[ParamType], ReturnTypeThen],
-    e: Callable[[ParamType], ReturnTypeElse],
-    x: ParamType,
-) -> ReturnTypeThen | ReturnTypeElse: ...
+    c: Callable[[ParamT], bool],
+    f: Callable[[ParamT], ReturnThen],
+    e: Callable[[ParamT], ReturnElse],
+    x: ParamT,
+) -> ReturnThen | ReturnElse: ...
 def if_then_(
-    c: Callable[[ParamType], bool],
-    f: Callable[[ParamType], ReturnTypeThen],
-) -> Callable[[ParamType], ReturnTypeThen | ParamType]: ...
+    c: Callable[[ParamT], bool],
+    f: Callable[[ParamT], ReturnThen],
+) -> Callable[[ParamT], ReturnThen | ParamT]: ...
 
-if_then_else = curry(if_then_else_)
-if_then = curry(if_then_)
+if_then_else = curry(if_then_else_, arity=4)
+if_then = curry(if_then_, arity=2)
 if_ = if_then_else
 then = pass_arg
-else_ = pass_arg
+else_ = pass_arg # FIXME type of the parameter is incorrect

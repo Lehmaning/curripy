@@ -1,7 +1,7 @@
 from typing import Callable
-from ..__generics import ParamType
+from ..__generics import ParamT
 
 def tap(
-    func: Callable[[ParamType], None],
-) -> Callable[[ParamType], ParamType]:
+    func: Callable[[ParamT], None],
+) -> Callable[[ParamT], ParamT]:
     ...

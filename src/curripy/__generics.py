@@ -1,33 +1,33 @@
 from typing import TypeVar, ParamSpec
 
 __all__ = [
-    "ReturnType",
-    "ReturnType1",
-    "ReturnType2",
-    "ReturnType3",
-    "ReturnType4",
-    "ReturnType5",
-    "ParamType",
-    "ParamType1",
-    "ParamType2",
-    "ParamType3",
-    "ParamType4",
-    "ParamType5",
-    "P",
+    "ReturnT",
+    "ReturnT1",
+    "ReturnT2",
+    "ReturnT3",
+    "ReturnT4",
+    "ReturnT5",
+    "ParamT",
+    "ParamT1",
+    "ParamT2",
+    "ParamT3",
+    "ParamT4",
+    "ParamT5",
+    "ArgKwargP",
 ]
 
-ReturnType = TypeVar("ReturnType")
-ReturnType1 = TypeVar("ReturnType1")
-ReturnType2 = TypeVar("ReturnType2")
-ReturnType3 = TypeVar("ReturnType3")
-ReturnType4 = TypeVar("ReturnType4")
-ReturnType5 = TypeVar("ReturnType5")
+ReturnT = TypeVar("ReturnT")
+ReturnT1 = TypeVar("ReturnT1")
+ReturnT2 = TypeVar("ReturnT2")
+ReturnT3 = TypeVar("ReturnT3")
+ReturnT4 = TypeVar("ReturnT4")
+ReturnT5 = TypeVar("ReturnT5")
 
-ParamType = TypeVar("ParamType")
-ParamType1 = TypeVar("ParamType1")
-ParamType2 = TypeVar("ParamType2")
-ParamType3 = TypeVar("ParamType3")
-ParamType4 = TypeVar("ParamType4")
-ParamType5 = TypeVar("ParamType5")
+ParamT = TypeVar("ParamT")
+ParamT1 = TypeVar("ParamT1")
+ParamT2 = TypeVar("ParamT2")
+ParamT3 = TypeVar("ParamT3")
+ParamT4 = TypeVar("ParamT4")
+ParamT5 = TypeVar("ParamT5")
 
-P = ParamSpec("P")
+ArgKwargP = ParamSpec("ArgKwargP")

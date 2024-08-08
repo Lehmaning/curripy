@@ -1,11 +1,22 @@
-from ..utils import curry_right, tap, curry
-from ..__generics import ReturnType
-from typing import overload, Callable, Any
+from typing import Any, Callable, Iterable
+
+from typing_extensions import TypeIs
+
+from ..__generics import ReturnT, ReturnT1, ReturnT2
+from ..utils import curry, curry_right, tap
+from ..__bootstrap.builtins_ import values
+from ..dummies.type import _ClassInfo
 
 __all__ = [
+    "getattr_",
     "hasattr_",
-    "print_",
     "help_",
+    "isinstance_",
+    "issubclass_",
+    "next_",
+    "print_",
+    "setattr_",
+    "values",
 ]
 
 # exported functions
@@ -13,9 +24,20 @@ hasattr_ = curry_right(hasattr)
 print_ = tap(print)
 help_ = tap(help)
 
-# functions which are not exported by default
-isinstance_ = curry_right(isinstance, arity=2)
-issubclass_ = curry_right(issubclass, arity=2)
+def next_(
+    default: ReturnT2,
+) -> Callable[[Iterable[ReturnT1]], ReturnT1 | ReturnT2]: ...
+@curry_right
+def isinstance_(
+    obj: object,
+    class_or_tuple: _ClassInfo,
+) -> TypeIs[_ClassInfo]: ...
 
-def setattr_(name: str) -> Callable[[Any], Callable[[object], None]]: ...
-def getattr_(name: str, default: ReturnType) -> Callable[[object], ReturnType]: ...
+issubclass_ = curry_right(issubclass)
+
+@curry
+def setattr_(name: str, value: Any) -> Callable[[object], None]: ...
+@curry
+def getattr_(
+    name: str, default: ReturnT | None = None
+) -> Callable[[object], ReturnT | Any | None]: ...

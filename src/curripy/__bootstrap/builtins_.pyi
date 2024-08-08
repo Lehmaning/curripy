@@ -1,9 +1,9 @@
 from _collections_abc import ValuesView, dict_values
-from typing import Any, Any, Callable, Iterable, Mapping, MutableMapping, TypeVar, overload
+from typing import Any, Callable, Iterable, Mapping, MutableMapping, TypeVar, overload
 
 from typing_extensions import TypeIs
 
-from ..__generics import ParamType, ParamType1, ParamType2
+from ..__generics import ParamT, ParamT1, ParamT2
 from ..utils import curry
 
 KeyType = TypeVar("KeyType")
@@ -12,16 +12,16 @@ ValueType = TypeVar("ValueType")
 @overload
 def filter_(
     func: None,
-) -> Callable[[Iterable[ParamType | None]], filter[ParamType]]:
+) -> Callable[[Iterable[ParamT | None]], filter[ParamT]]:
     ...
 @overload
 def filter_(
-    func: Callable[[ParamType2], TypeIs[ParamType1]]
-) -> Callable[[Iterable[ParamType2]], filter[ParamType1]]: ...
+    func: Callable[[ParamT2], TypeIs[ParamT1]]
+) -> Callable[[Iterable[ParamT2]], filter[ParamT1]]: ...
 @overload
 def filter_(
-    func: Callable[[ParamType], Any]
-) -> Callable[[Iterable[ParamType]], filter[Any]]: ...
+    func: Callable[[ParamT], Any]
+) -> Callable[[Iterable[ParamT]], filter[Any]]: ...
 
 map_ = curry(map)
 
