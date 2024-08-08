@@ -1,10 +1,8 @@
-from curripy.utils import pipe
-from curripy import else_, if_, if_then_else, then, map_, filter_, isinstance_
-from curripy.operator_ import eq
+from curripy import eq, filter_, isinstance_, map_, pipe
 
 
 def test_isinstance():
-    assert isinstance_("a")(str) == isinstance("a", str)
+    assert isinstance_(str)("a") == isinstance("a", str)
 
 
 def test_filter():
@@ -18,17 +16,5 @@ def test_map():
         False,
         True,
         False,
-    ) and evaluated_map == point_free_pipe([1, 2, 3])
-
-
-def test_if_then_else():
-    cond_flow = pipe(
-        if_(eq(2)),
-        then(lambda x: 1),
-        else_(lambda x: 0),
     )
-
-    cond_single = if_then_else(eq(2))(lambda x: 1)(lambda x: 0)
-
-    assert cond_single(1 + 1) == 1
-    assert cond_flow(1 + 1) == 1
+    assert point_free_pipe([1, 2, 3]) == evaluated_map
