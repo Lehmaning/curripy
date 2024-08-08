@@ -1,38 +1,22 @@
-from typing import Any, TypeVar
-
-from ..utils import curry, partial
-from ..utils.builtins_ import map_, filter_, call_method_values
+from ..utils import curry
+from ..__bootstrap.builtins_ import map_, filter_
 
 __all__ = [
-    "isinstance_",
-    "issubclass_",
     "divmod_",
-    "getattr_",
-    "setattr_",
     "map_",
     "filter_",
-    "next_",
-    "call_method_values",
 ]
-
-
-ReturnType = TypeVar("ReturnType")
-ParamType = TypeVar("ParamType")
 
 isinstance_ = curry(isinstance)
 issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)
 
-
-def next_(default):
-    return partial(next, default)
-
-
+# Belows are not exported to the root package by default
 @curry
-def getattr_(o: Any, name: str, default: ReturnType | None = None) -> Any | ReturnType:
+def getattr_(o, name, default = None):
     return getattr(o, name, default)
 
 
 @curry
-def setattr_(o: Any, name: str, value: Any) -> None:
+def setattr_(o, name, value):
     return setattr(o, name, value)
