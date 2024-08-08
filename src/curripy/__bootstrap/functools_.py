@@ -1,8 +1,8 @@
-from ..__dummies.obj import obejct_ as __initial_missing
+from ..dummies.obj import obejct_ as __initial_missing
 
 def reduce_generator(func, sequence, initial=__initial_missing):
     """
-    This is a modified version of functools.reduce which returns a generator.
+    This is a modified version of functools.reduce that returns a generator.
     To get the last result of the function, consider to use:
     >>> *_, x = reduce_generator(...)
 

@@ -10,7 +10,7 @@ from typing import (
 )
 
 from curripy.utils.inspect_ import len_of_non_default_params
-from ..__generics import ParamType1, ParamType2,ParamType3, ParamType4, ParamType5, ReturnType, P
+from ..__generics import ParamT1, ParamT2,ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP
 
 __all__ = ["curry"]
 
@@ -19,7 +19,7 @@ class Order(IntEnum):
     RightToLeft = 1
 
 
-class Curry(Generic[ParamType1, ReturnType, P]):
+class Curry(Generic[ParamT1, ReturnT, ArgKwargP]):
     """
     Getting arguments recursively.
     Call the function after being received positional arguments which have the same amount of arity.
@@ -28,13 +28,13 @@ class Curry(Generic[ParamType1, ReturnType, P]):
     Also, this class can serve as a "partial function".
 
     Attributes:
-        func (Callable[P, ReturnType]): the function to be curried
+        func (Callable[ArgKwargP, ReturnT]): the function to be curried
         arity (int | None, optional): max number of arguments to be passed, default is the amount of required parameters
     """
     __slots__ = ("func", "arity", "__args", "__kwargs", "__call_count", "__order")
     def __init__(
         self,
-        func: Callable[P, ReturnType],
+        func: Callable[ArgKwargP, ReturnT],
         arity: int | None = None,
         order: int = Order.LeftToRight,
     ) -> None:
@@ -66,16 +66,16 @@ class Curry(Generic[ParamType1, ReturnType, P]):
 
     @staticmethod
     def call(
-        func: Callable[P, ReturnType], *args: P.args, **kwargs: P.kwargs
-    ) -> ReturnType:
+        func: Callable[ArgKwargP, ReturnT], *args: ArgKwargP.args, **kwargs: ArgKwargP.kwargs
+    ) -> ReturnT:
         """
         A function same as operator.call with generic type support, limited with the Curry class
 
         Args:
-            func (Callable[P, ReturnType]): the function to be called
+            func (Callable[ArgKwargP, ReturnT]): the function to be called
 
         Returns:
-            ReturnType: the return type of the func
+            ReturnT: the return type of the func
         """
         return func(*args, **kwargs)
 
@@ -97,41 +97,41 @@ class Curry(Generic[ParamType1, ReturnType, P]):
         return self
 
 
-class Curry1(Curry[ParamType1, ReturnType, P]):
-    def __call__(self, arg1: ParamType1, **kwargs) -> ReturnType:
+class Curry1(Curry[ParamT1, ReturnT, ArgKwargP]):
+    def __call__(self, arg1: ParamT1, **kwargs) -> ReturnT:
         return super().__call__(arg1, **kwargs)
 
 
-class Curry2(Curry[ParamType1, Curry1[ParamType2, ReturnType, P], P]):
+class Curry2(Curry[ParamT1, Curry1[ParamT2, ReturnT, ArgKwargP], ArgKwargP]):
     @overload
     def __call__(
-        self, arg1: ParamType1, **kwargs
-    ) -> Curry1[ParamType2, ReturnType, P]: ...
+        self, arg1: ParamT1, **kwargs
+    ) -> Curry1[ParamT2, ReturnT, ArgKwargP]: ...
     @overload
-    def __call__(self, arg1: ParamType1, arg2: ParamType2, **kwargs) -> ReturnType: ...
+    def __call__(self, arg1: ParamT1, arg2: ParamT2, **kwargs) -> ReturnT: ...
     def __call__(self, *args, **kwargs):
         return super().__call__(*args, **kwargs)
 
 
-class Curry3(Curry[ParamType1, Curry2[ParamType2, ParamType3, ReturnType, P], P]):
+class Curry3(Curry[ParamT1, Curry2[ParamT2, ParamT3, ReturnT, ArgKwargP], ArgKwargP]):
     @overload
     def __call__(
-        self, arg1: ParamType1, **kwargs
-    ) -> Curry2[ParamType2, ParamType3, ReturnType, P]: ...
+        self, arg1: ParamT1, **kwargs
+    ) -> Curry2[ParamT2, ParamT3, ReturnT, ArgKwargP]: ...
     @overload
     def __call__(
-        self, arg1: ParamType1, arg2: ParamType2, **kwargs
-    ) -> Curry1[ParamType3, ReturnType, P]: ...
+        self, arg1: ParamT1, arg2: ParamT2, **kwargs
+    ) -> Curry1[ParamT3, ReturnT, ArgKwargP]: ...
     @overload
     def __call__(
-        self, arg1: ParamType1, arg2: ParamType2, arg3: ParamType3, **kwargs
-    ) -> ReturnType: ...
+        self, arg1: ParamT1, arg2: ParamT2, arg3: ParamT3, **kwargs
+    ) -> ReturnT: ...
     def __call__(self, *args, **kwargs):
         return super().__call__(*args, **kwargs)
 
 
 class Curry4(
-    Curry[ParamType1, Curry3[ParamType2, ParamType3, ParamType4, ReturnType, P], P]
+    Curry[ParamT1, Curry3[ParamT2, ParamT3, ParamT4, ReturnT, ArgKwargP], ArgKwargP]
 ):
     def __call__(self, *args, **kwargs):
         return super().__call__(*args, **kwargs)
@@ -139,9 +139,9 @@ class Curry4(
 
 class Curry5(
     Curry[
-        ParamType1,
-        Curry4[ParamType2, ParamType3, ParamType4, ParamType5, ReturnType, P],
-        P,
+        ParamT1,
+        Curry4[ParamT2, ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP],
+        ArgKwargP 
     ]
 ):
     def __call__(self, *args, **kwargs):

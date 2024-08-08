@@ -10,3 +10,9 @@ def is_not(a):
     def __b(b):
         return a is not b
     return __b
+
+
+def call(obj):
+    def caller(arg, /, *args, **kwargs):
+        return obj(arg, *args, **kwargs)
+    return caller
