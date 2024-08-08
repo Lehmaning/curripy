@@ -1,6 +1,5 @@
 from typing import (
     Concatenate,
-    final,
     Callable,
     Literal,
     overload,
