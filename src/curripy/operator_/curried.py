@@ -5,6 +5,7 @@ from operator import concat as concat_
 from operator import contains as contains_
 from operator import countOf as countOf_
 from operator import delitem as delitem_
+from operator import eq as eq_
 from operator import floordiv as floordiv_
 from operator import ge as ge_
 from operator import getitem as getitem_
@@ -40,9 +41,8 @@ from operator import truediv as truediv_
 from operator import xor as xor_
 
 from ..utils import curry
-from ..utils.operator_ import eq as eq_
-from ..utils.operator_ import is_ as is__
-from ..utils.operator_ import is_not as is_not_
+from ..__bootstrap.operator_ import is_ as is__
+from ..__bootstrap.operator_ import is_not as is_not_
 
 __all__ = [
     "add",
