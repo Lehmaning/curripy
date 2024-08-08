@@ -11,10 +11,10 @@ def tap(func):
     - https://x.com/joelnet/status/1165994838564777985
 
     Args:
-        func (Callable[Concatenate[ParamType, P], None]): _description_
+        func (Callable[Concatenate[ParamT, ArgKwargP , None]): _description_
 
     Returns:
-        Callable[Concatenate[ParamType, P], ParamType]: _description_
+        Callable[Concatenate[ParamT, ArgKwargP , ParamT]: _description_
     """
 
     def caller(arg, **kwargs):
