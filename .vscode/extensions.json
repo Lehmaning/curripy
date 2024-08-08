@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "littlefoxteam.vscode-python-test-adapter",
+        "hbenl.vscode-test-explorer",
+        "hbenl.test-adapter-converter",
+        "ms-python.mypy-type-checker",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "mgesbert.python-path",
+        "charliermarsh.ruff",
+        "gruntfuggly.todo-tree"
+    ]
+}
