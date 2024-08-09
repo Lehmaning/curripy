@@ -12,15 +12,14 @@ ValueType = TypeVar("ValueType")
 @overload
 def filter_(
     func: None,
-) -> Callable[[Iterable[ParamT | None]], filter[ParamT]]:
-    ...
+) -> Callable[[Iterable[ParamT | None]], filter[ParamT]]: ...
 @overload
 def filter_(
-    func: Callable[[ParamT2], TypeIs[ParamT1]]
+    func: Callable[[ParamT2], TypeIs[ParamT1]],
 ) -> Callable[[Iterable[ParamT2]], filter[ParamT1]]: ...
 @overload
 def filter_(
-    func: Callable[[ParamT], Any]
+    func: Callable[[ParamT], Any],
 ) -> Callable[[Iterable[ParamT]], filter[Any]]: ...
 
 map_ = curry(map)

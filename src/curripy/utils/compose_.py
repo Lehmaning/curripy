@@ -8,11 +8,13 @@ def cdot(f):
     """
     Same as dot, but curried.
     """
+
     def __dot(g):
         def caller(x):
             nonlocal f
             nonlocal g
             return g(f(x))
+
         return caller
 
     return __dot

@@ -35,9 +35,7 @@ def partial(
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def partial(
-    func: Callable[
-        Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ArgKwargP], ReturnT
-    ],
+    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ArgKwargP], ReturnT],
     arg1: ParamT1,
     arg2: ParamT2,
     arg3: ParamT3,
@@ -57,5 +55,7 @@ def partial(
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def partial(
-    func: Callable[ArgKwargP, ReturnT], *args: ArgKwargP.args, **kwargs: ArgKwargP.kwargs
+    func: Callable[ArgKwargP, ReturnT],
+    *args: ArgKwargP.args,
+    **kwargs: ArgKwargP.kwargs,
 ) -> Callable[..., ReturnT]: ...

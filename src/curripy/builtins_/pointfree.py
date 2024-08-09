@@ -10,7 +10,7 @@ __all__ = [
     "next_",
     "print_",
     "setattr_",
-    "values"
+    "values",
 ]
 
 hasattr_ = curry_right(hasattr)
@@ -28,10 +28,12 @@ def next_(default):
 def setattr_(name, value):
     return partial(setattr, name, value)
 
+
 @curry
-def getattr_(name, default = None):
+def getattr_(name, default=None):
     def __get_object(o):
         nonlocal name
         nonlocal default
         return getattr(o, name, default)
+
     return __get_object

@@ -11,9 +11,10 @@ isinstance_ = curry(isinstance)
 issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)
 
+
 # Belows are not exported to the root package by default
 @curry
-def getattr_(o, name, default = None):
+def getattr_(o, name, default=None):
     return getattr(o, name, default)
 
 
