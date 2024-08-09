@@ -6,7 +6,7 @@ from .cond import if_, if_then, if_then_else, then, else_
 from .identity_ import identity
 from .call_ import pass_arg, pass_arg_
 
-__all__ = [
+__all__ = (
     "pipe",
     "compose",
     "cdot",
@@ -23,4 +23,4 @@ __all__ = [
     "identity",
     "pass_arg",
     "pass_arg_",
-]
+)

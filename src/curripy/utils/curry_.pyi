@@ -1,6 +1,6 @@
+from ast import Call
 from typing import (
     Concatenate,
-    final,
     Callable,
     Literal,
     overload,
@@ -8,11 +8,12 @@ from typing import (
 
 from ..__generics import ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP
 
-__all__ = [
+__all__ = (
     "curry",
     "curry_right",
-]
+)
 
+# TODO correct types for curry_decorator
 @overload
 def curry(
     func: Callable[[ParamT1], ReturnT],

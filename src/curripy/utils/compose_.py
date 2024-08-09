@@ -1,18 +1,25 @@
 from functools import reduce
 from .call_ import pass_arg_
 
-__all__ = ["dot", "cdot", "compose", "pipe"]
+__all__ = (
+    "dot",
+    "cdot",
+    "compose",
+    "pipe",
+)
 
 
 def cdot(f):
     """
     Same as dot, but curried.
     """
+
     def __dot(g):
         def caller(x):
             nonlocal f
             nonlocal g
             return g(f(x))
+
         return caller
 
     return __dot

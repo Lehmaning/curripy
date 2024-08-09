@@ -1,5 +1,6 @@
 from ..dummies.obj import obejct_ as __initial_missing
 
+
 def reduce_generator(func, sequence, initial=__initial_missing):
     """
     This is a modified version of functools.reduce that returns a generator.

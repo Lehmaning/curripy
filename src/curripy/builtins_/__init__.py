@@ -11,7 +11,7 @@ from .pointfree import (
     values,
 )
 
-__all__ = [
+__all__ = (
     "divmod_",
     "map_",
     "filter_",
@@ -24,4 +24,4 @@ __all__ = [
     "print_",
     "setattr_",
     "values",
-]
+)

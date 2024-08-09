@@ -11,7 +11,12 @@ from ..__generics import (
     ReturnT5,
 )
 
-__all__ = ["cdot", "dot", "compose", "pipe"]
+__all__ = (
+    "cdot",
+    "dot",
+    "compose",
+    "pipe",
+)
 
 def cdot(
     f: Callable[[ParamT], ReturnT1],

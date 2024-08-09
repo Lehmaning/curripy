@@ -1,11 +1,11 @@
 from inspect import Parameter, Signature, signature
 from operator import itemgetter
 
-from ..__bootstrap.builtins_ import filter_, values
 from ..__temporary.functools_ import lru_cache
-from ..__bootstrap.operator_ import is_, is_not
-from ..dummies.func import def_args, def_kwargs
-from .compose_ import pipe
+from .dummies import def_args_kwargs
+from ..utils.compose_ import pipe
+from .builtins_ import filter_, values
+from .operator_ import is_, is_not
 
 
 def get_parameters(sig: Signature):
@@ -16,14 +16,16 @@ def get_default(obj: Parameter):
     return obj.default
 
 
+# base function
 signature_parameters = lru_cache()(pipe(signature, get_parameters))
 
+# get Parameter of args and kwargs
 param_var_args: Parameter = lru_cache()(pipe(signature_parameters, itemgetter("args")))(
-    def_args
+    def_args_kwargs
 )
 param_var_kwargs: Parameter = lru_cache()(
     pipe(signature_parameters, itemgetter("kwargs"))
-)(def_kwargs)
+)(def_args_kwargs)
 
 is_empty = is_(Signature.empty)
 not_var_args = is_not(param_var_args)

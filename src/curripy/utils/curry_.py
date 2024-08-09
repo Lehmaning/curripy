@@ -1,13 +1,43 @@
-from .inspect_ import len_of_non_default_params
+from ..__bootstrap.inspect_ import len_of_non_default_params
+from ..__bootstrap.operator_ import or_, add_right, add
 
-__all__ = [
+__all__ = (
     "curry",
     "curry_right",
-]
+)
+
+
+def accepting_args(curry_func, func, process_args_func, process_kwargs_func, arity):
+    def caller(*passing_args, **passing_kwargs):
+        nonlocal curry_func, func, process_args_func, process_kwargs_func, arity
+        apply_args = process_args_func(passing_args)
+        apply_kwargs = process_kwargs_func(passing_kwargs)
+        return curry_func(func, arity, *apply_args, **apply_kwargs)
+
+    return caller
+
+
+def curry_decorator(
+    curry_func, process_args_func_base, process_kwargs_func_base, arity=None
+):
+    def decorator_function(func, *args, **kwargs):
+        nonlocal process_args_func_base, process_kwargs_func_base, arity
+        __args = () if args is None else args
+        __kwargs = {} if kwargs is None else kwargs
+        __arity: int = len_of_non_default_params(func) if arity is None else arity
+        return accepting_args(
+            curry_func,
+            func,
+            process_args_func_base(__args),
+            process_kwargs_func_base(__kwargs),
+            __arity,
+        )
+
+    return decorator_function
 
 
 def curry(
-    func,
+    func=None,
     arity=None,
     *args,
     **kwargs,
@@ -23,51 +53,45 @@ def curry(
     Returns:
         Callable | ReturnT: a partial applied function or final return of the function
     """
-    __args = () if args is None else args
-    __kwargs = {} if kwargs is None else kwargs
-    __arity: int = len_of_non_default_params(func) if arity is None else arity
-    if __arity == 1:
+    if func is None:
+        return curry_decorator(curry, add, or_, arity=arity)
+    elif arity is None:
+        return curry_decorator(curry, add, or_, arity=arity)(func)
+    if arity == 1:
         return func
-    if len(__args) >= __arity:
+    if len(args) >= arity:
         return func(*args, **kwargs)
-    if __arity > 1:
-
-        def accepting_args(*passing_args, **passing_kwargs):
-            nonlocal __args
-            nonlocal __kwargs
-            nonlocal __arity
-            nonlocal func
-            apply_args = __args + passing_args
-            apply_kwargs = __kwargs | passing_kwargs
-            return curry(func, __arity, *apply_args, **apply_kwargs)
-
-        return accepting_args
+    if arity > 1:
+        return accepting_args(
+            curry,
+            func,
+            add(args),
+            or_(kwargs),
+            arity,
+        )
     return func
 
 
 def curry_right(
-    func,
+    func=None,
     arity=None,
     *args,
     **kwargs,
 ):
-    __args = () if args is None else args
-    __kwargs = {} if kwargs is None else kwargs
-    __arity: int = len_of_non_default_params(func) if arity is None else arity
-    if __arity == 1:
+    if func is None:
+        return curry_decorator(curry_right, add_right, or_, arity)
+    elif arity is None:
+        return curry_decorator(curry_right, add_right, or_)(func)
+    if arity == 1:
         return func
-    if len(__args) >= __arity:
+    if len(args) >= arity:
         return func(*args, **kwargs)
-    if __arity > 1:
-
-        def accepting_args(*passing_args, **passing_kwargs):
-            nonlocal __args
-            nonlocal __kwargs
-            nonlocal __arity
-            nonlocal func
-            apply_args = passing_args + __args
-            apply_kwargs = __kwargs | passing_kwargs
-            return curry_right(func, __arity, *apply_args, **apply_kwargs)
-
-        return accepting_args
+    if arity > 1:
+        return accepting_args(
+            curry_right,
+            func,
+            add_right(args),
+            or_(kwargs),
+            arity,
+        )
     return func

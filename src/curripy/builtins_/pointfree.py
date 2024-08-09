@@ -1,7 +1,7 @@
 from ..utils import curry, curry_right, partial, tap
 from ..__bootstrap.builtins_ import values
 
-__all__ = [
+__all__ = (
     "getattr_",
     "hasattr_",
     "help_",
@@ -10,8 +10,8 @@ __all__ = [
     "next_",
     "print_",
     "setattr_",
-    "values"
-]
+    "values",
+)
 
 hasattr_ = curry_right(hasattr)
 print_ = tap(print)
@@ -28,10 +28,12 @@ def next_(default):
 def setattr_(name, value):
     return partial(setattr, name, value)
 
+
 @curry
-def getattr_(name, default = None):
+def getattr_(name, default=None):
     def __get_object(o):
         nonlocal name
         nonlocal default
         return getattr(o, name, default)
+
     return __get_object

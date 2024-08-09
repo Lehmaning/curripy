@@ -3,7 +3,7 @@ from .curry_ import curry
 from .identity_ import identity
 from ..utils import partial
 
-__all__ = [
+__all__ = (
     "if_then_else",
     "if_then",
     "if_then_else_",
@@ -11,7 +11,7 @@ __all__ = [
     "if_",
     "then",
     "else_",
-]
+)
 
 
 def if_then_else_(
