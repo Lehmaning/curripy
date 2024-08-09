@@ -1,11 +1,23 @@
 import re
-from ..utils import curry, partial
+from ..utils import curry
 
-__all__ = ["search"]
+__all__ = (
+    "findall",
+    "finditer",
+    "fullmatch",
+    "match_",
+    "search",
+    "split",
+    "sub",
+    "subn",
+)
 
 
+findall = curry(re.findall)
+finditer = curry(re.finditer)
 fullmatch = curry(re.fullmatch)
-sub = curry(re.sub)
-search = curry(re.search)
 match_ = curry(re.match)
+search = curry(re.search)
+split = curry(re.split)
+sub = curry(re.sub)
 subn = curry(re.subn)
