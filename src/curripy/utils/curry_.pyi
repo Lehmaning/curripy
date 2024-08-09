@@ -11,7 +11,7 @@ from ..__generics import ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ReturnT, A
 __all__ = (
     "curry",
     "curry_right",
-]
+)
 
 # TODO correct types for curry_decorator
 @overload
@@ -174,7 +174,7 @@ def curry_right(
             ],
         ],
     ],
-): ...
+]: ...
 @overload
 def curry_right(
     func: Callable[ArgKwargP, ReturnT],

@@ -1,4 +1,4 @@
-__all__ = ("tap")
+__all__ = ("tap",)
 
 
 def tap(func):

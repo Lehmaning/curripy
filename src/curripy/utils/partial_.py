@@ -1,4 +1,4 @@
-__all__ = ("partial")
+__all__ = ("partial",)
 
 
 def partial(func, *args, **kwargs):
