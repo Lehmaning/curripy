@@ -5,6 +5,7 @@ from curripy import (
     cdot,
     compose,
     curry,
+    curry_right,
     dot,
     else_,
     eq,
@@ -15,10 +16,12 @@ from curripy import (
     pipe,
     then,
 )
+from curripy.dummies.func import return_1, return_0
 
 
 def test_curry():
-    assert curry(lambda x, y, z: x + y + z)(1)(2)(3) == 1 + 2 + 3
+    assert curry(lambda x, y, z: (x + y) * z)(1)(2)(3) == (1 + 2) * 3
+    assert curry_right(lambda x, y, z: (x + y) * z)(3)(2)(1) == (1 + 2) * 3
 
 
 def test_partial():
@@ -36,11 +39,11 @@ def test_compose():
 def test_cond():
     cond_flow = pipe(
         if_(eq(2)),
-        then(lambda x: 1),
-        else_(lambda x: 0),
+        then(return_1),
+        else_(return_0),
     )
 
     cond_single = if_then_else(eq(2))(lambda x: 1)(lambda x: 0)
 
-    assert cond_single(1 + 1) == 1 if 1 + 1 == 2 else 0
-    assert cond_flow(1 + 1) == 1 if 1 + 1 == 2 else 0
+    assert cond_single(1 + 1) == (1 if 1 + 1 == 2 else 0)
+    assert cond_flow(1 + 1) == (1 if 1 + 1 == 2 else 0)

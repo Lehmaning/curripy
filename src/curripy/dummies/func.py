@@ -1,7 +1,7 @@
 from ..utils import curry
 from ..__bootstrap.dummies import def_args_kwargs
 
-__all__ = [
+__all__ = (
     "def_kwargs",
     "def_args",
     "def_args_kwargs",
@@ -10,7 +10,7 @@ __all__ = [
     "return_false",
     "return_0",
     "return_1",
-]
+)
 
 
 def def_kwargs(**kwargs): ...
