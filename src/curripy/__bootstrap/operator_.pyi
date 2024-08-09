@@ -47,9 +47,9 @@ or_(a)(b)
 Same as a | b.
 """
 
-getitem = curry(o.getitem)
+getitem = curry_right(o.getitem)
 """
-getitem(a)(b)
+getitem(b)(a)
 
 Same as a[b].
 """
