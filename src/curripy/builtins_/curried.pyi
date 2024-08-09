@@ -5,11 +5,11 @@ from ..utils import curry
 from ..__bootstrap.builtins_ import map_, filter_
 from ..dummies.type import _ClassInfo
 
-__all__ = [
+__all__ = (
     "divmod_",
     "map_",
     "filter_",
-]
+)
 
 issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)

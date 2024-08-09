@@ -7,7 +7,7 @@ from ..utils import curry, curry_right, tap
 from ..__bootstrap.builtins_ import values
 from ..dummies.type import _ClassInfo
 
-__all__ = [
+__all__ = (
     "getattr_",
     "hasattr_",
     "help_",
@@ -17,7 +17,7 @@ __all__ = [
     "print_",
     "setattr_",
     "values",
-]
+)
 
 # exported functions
 hasattr_ = curry_right(hasattr)

@@ -6,7 +6,7 @@ from ..__generics import ReturnT2 as ReturnElse
 from .call_ import pass_arg
 from .curry_ import curry
 
-__all__ = [
+__all__ = (
     "if_then_else",
     "if_then",
     "if_then_else_",
@@ -14,7 +14,7 @@ __all__ = [
     "if_",
     "then",
     "else_",
-]
+)
 
 # FIXME type of partial is incompatible with if_then_else_
 def if_then_else_(

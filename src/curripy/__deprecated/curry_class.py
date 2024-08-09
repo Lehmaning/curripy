@@ -12,7 +12,7 @@ from typing import (
 from curripy.utils.inspect_ import len_of_non_default_params
 from ..__generics import ParamT1, ParamT2,ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP
 
-__all__ = ["curry"]
+__all__ = ("curry")
 
 class Order(IntEnum):
     LeftToRight = 0

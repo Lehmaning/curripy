@@ -12,7 +12,6 @@ __all__ = (
     "subn",
 )
 
-
 findall = curry(re.findall)
 finditer = curry(re.finditer)
 fullmatch = curry(re.fullmatch)

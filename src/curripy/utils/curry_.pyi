@@ -8,7 +8,7 @@ from typing import (
 
 from ..__generics import ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP
 
-__all__ = [
+__all__ = (
     "curry",
     "curry_right",
 ]
@@ -174,7 +174,7 @@ def curry_right(
             ],
         ],
     ],
-]: ...
+): ...
 @overload
 def curry_right(
     func: Callable[ArgKwargP, ReturnT],

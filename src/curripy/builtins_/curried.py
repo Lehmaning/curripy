@@ -1,11 +1,11 @@
 from ..utils import curry
 from ..__bootstrap.builtins_ import map_, filter_
 
-__all__ = [
+__all__ = (
     "divmod_",
     "map_",
     "filter_",
-]
+)
 
 isinstance_ = curry(isinstance)
 issubclass_ = curry(issubclass)

@@ -3,7 +3,7 @@ import operator as o
 from ..utils import curry
 from ..__bootstrap.operator_ import is_, is_not, add, add_right, call, or_, getitem
 
-__all__ = [
+__all__ = (
     "add",
     "add_right",
     "and_",
@@ -48,7 +48,7 @@ __all__ = [
     "sub",
     "truediv",
     "xor",
-]
+)
 
 and_ = curry(o.and_, arity=2)
 concat = curry(o.concat, arity=2)

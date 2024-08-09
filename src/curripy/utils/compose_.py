@@ -1,7 +1,7 @@
 from functools import reduce
 from .call_ import pass_arg_
 
-__all__ = ["dot", "cdot", "compose", "pipe"]
+__all__ = ("dot", "cdot", "compose", "pipe")
 
 
 def cdot(f):

@@ -5,7 +5,7 @@ Splitting them into a module for reusing.
 
 from typing import TypeVar, ParamSpec
 
-__all__ = [
+__all__ = (
     "ReturnT",
     "ReturnT1",
     "ReturnT2",
@@ -19,7 +19,7 @@ __all__ = [
     "ParamT4",
     "ParamT5",
     "ArgKwargP",
-]
+)
 
 ReturnT = TypeVar("ReturnT")
 ReturnT1 = TypeVar("ReturnT1")

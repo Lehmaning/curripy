@@ -1,6 +1,6 @@
 from operator import attrgetter
 
-__all__ = ["get_func", "get_args", "get_keywords"]
+__all__ = ("get_func", "get_args", "get_keywords")
 
 get_func = attrgetter("func")
 get_args = attrgetter("args")

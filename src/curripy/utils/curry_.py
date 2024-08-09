@@ -1,10 +1,10 @@
 from ..__bootstrap.inspect_ import len_of_non_default_params
 from ..__bootstrap.operator_ import or_, add_right, add
 
-__all__ = [
+__all__ = (
     "curry",
     "curry_right",
-]
+)
 
 
 def accepting_args(curry_func, func, process_args_func, process_kwargs_func, arity):

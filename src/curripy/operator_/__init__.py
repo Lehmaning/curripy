@@ -42,9 +42,9 @@ from .curried import (
     truediv,
     xor,
 )
-from .pointfree import *  # noqa: F403
+from .pointfree import *
 
-__all__ = [
+__all__ = (
     "add",
     "and_",
     "concat",
@@ -87,4 +87,4 @@ __all__ = [
     "sub",
     "truediv",
     "xor",
-]
+)

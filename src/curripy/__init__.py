@@ -76,7 +76,7 @@ from .utils import (
     pass_arg_,
 )
 
-__all__ = [
+__all__ = (
     # From builtins_
     "divmod_",
     "map_",
@@ -150,4 +150,4 @@ __all__ = [
     "identity",
     "pass_arg",
     "pass_arg_",
-]
+)

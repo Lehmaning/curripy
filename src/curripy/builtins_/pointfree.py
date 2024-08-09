@@ -1,7 +1,7 @@
 from ..utils import curry, curry_right, partial, tap
 from ..__bootstrap.builtins_ import values
 
-__all__ = [
+__all__ = (
     "getattr_",
     "hasattr_",
     "help_",
@@ -11,7 +11,7 @@ __all__ = [
     "print_",
     "setattr_",
     "values",
-]
+)
 
 hasattr_ = curry_right(hasattr)
 print_ = tap(print)
