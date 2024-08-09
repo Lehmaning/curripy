@@ -1,3 +1,8 @@
+"""
+Generic types which are signed for types of return values and types of parameters.
+Splitting them into a module for reusing.
+"""
+
 from typing import TypeVar, ParamSpec
 
 __all__ = [

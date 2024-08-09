@@ -16,6 +16,7 @@ __all__ = [
     "else_",
 ]
 
+# FIXME type of partial is incompatible with if_then_else_
 def if_then_else_(
     c: Callable[[ParamT], bool],
     f: Callable[[ParamT], ReturnThen],
@@ -30,5 +31,6 @@ def if_then_(
 if_then_else = curry(if_then_else_, arity=4)
 if_then = curry(if_then_, arity=2)
 if_ = if_then_else
+# FIXME type of then and else_ are incompatible with pipe
 then = pass_arg
-else_ = pass_arg # FIXME type of the parameter is incorrect
+else_ = pass_arg
