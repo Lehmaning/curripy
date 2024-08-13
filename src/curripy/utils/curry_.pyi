@@ -1,4 +1,3 @@
-from ast import Call
 from typing import (
     Concatenate,
     Callable,
@@ -17,22 +16,22 @@ __all__ = (
 @overload
 def curry(
     func: Callable[[ParamT1], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT1], ReturnT]: ...
 @overload
 def curry(
     func: Callable[[ParamT1, ParamT2], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT1], Callable[[ParamT2], ReturnT]]: ...
 @overload
 def curry(
     func: Callable[[ParamT1, ParamT2, ParamT3], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT1], Callable[[ParamT2], Callable[[ParamT3], ReturnT]]]: ...
 @overload
 def curry(
     func: Callable[[ParamT1, ParamT2, ParamT3, ParamT4], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[
     [ParamT1],
     Callable[[ParamT2], Callable[[ParamT3], Callable[[ParamT4], ReturnT]]],
@@ -40,7 +39,7 @@ def curry(
 @overload
 def curry(
     func: Callable[[ParamT1, ParamT2, ParamT3, ParamT4, ParamT5], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[
     [ParamT1],
     Callable[
@@ -88,29 +87,29 @@ def curry(
 @overload
 def curry(
     func: Callable[ArgKwargP, ReturnT],
-    arity: int | None = None,
+    arity: int | None = ...,
     *args: ArgKwargP.args,
     **kwargs: ArgKwargP.kwargs,
 ) -> Callable[..., ReturnT]: ...
 @overload
 def curry_right(
     func: Callable[[ParamT1], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT1], ReturnT]: ...
 @overload
 def curry_right(
     func: Callable[[ParamT1, ParamT2], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT2], Callable[[ParamT1], ReturnT]]: ...
 @overload
 def curry_right(
     func: Callable[[ParamT1, ParamT2, ParamT3], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[[ParamT3], Callable[[ParamT2], Callable[[ParamT1], ReturnT]]]: ...
 @overload
 def curry_right(
     func: Callable[[ParamT1, ParamT2, ParamT3, ParamT4], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[
     [ParamT4],
     Callable[[ParamT3], Callable[[ParamT2], Callable[[ParamT1], ReturnT]]],
@@ -118,7 +117,7 @@ def curry_right(
 @overload
 def curry_right(
     func: Callable[[ParamT1, ParamT2, ParamT3, ParamT4, ParamT5], ReturnT],
-    arity: None = None,
+    arity: None = ...,
 ) -> Callable[
     [ParamT5],
     Callable[
@@ -133,15 +132,15 @@ def curry_right(
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def curry_right(
-    func: Callable[[ParamT1, ParamT2], ReturnT],
+    func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT],
     arity: Literal[2],
-) -> Callable[[ParamT2], Callable[[ParamT1], ReturnT]]: ...
+) -> Callable[[ParamT1], Callable[ArgKwargP, ReturnT]]: ...
 @overload
 def curry_right(
-    func: Callable[[ParamT1, ParamT2, ParamT3], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ArgKwargP], ReturnT],
     arity: Literal[3],
 ) -> Callable[
-    [ParamT3],
+    ArgKwargP,
     Callable[[ParamT2], Callable[[ParamT1], ReturnT]],
 ]: ...
 @overload
@@ -178,7 +177,7 @@ def curry_right(
 @overload
 def curry_right(
     func: Callable[ArgKwargP, ReturnT],
-    arity: int | None = None,
+    arity: int | None = ...,
     *args: ArgKwargP.args,
     **kwargs: ArgKwargP.kwargs,
 ) -> Callable[..., ReturnT]: ...

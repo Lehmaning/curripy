@@ -7,12 +7,12 @@ __all__ = (
 )
 
 
-def accepting_args(curry_func, func, process_args_func, process_kwargs_func, arity):
+def merge_args(recurser, func, process_args_func, process_kwargs_func, arity):
     def caller(*passing_args, **passing_kwargs):
-        nonlocal curry_func, func, process_args_func, process_kwargs_func, arity
+        nonlocal recurser, func, process_args_func, process_kwargs_func, arity
         apply_args = process_args_func(passing_args)
         apply_kwargs = process_kwargs_func(passing_kwargs)
-        return curry_func(func, arity, *apply_args, **apply_kwargs)
+        return recurser(func, arity, *apply_args, **apply_kwargs)
 
     return caller
 
@@ -20,12 +20,12 @@ def accepting_args(curry_func, func, process_args_func, process_kwargs_func, ari
 def curry_decorator(
     curry_func, process_args_func_base, process_kwargs_func_base, arity=None
 ):
-    def decorator_function(func, *args, **kwargs):
+    def init_args(func, *args, **kwargs):
         nonlocal process_args_func_base, process_kwargs_func_base, arity
         __args = () if args is None else args
         __kwargs = {} if kwargs is None else kwargs
         __arity: int = len_of_non_default_params(func) if arity is None else arity
-        return accepting_args(
+        return merge_args(
             curry_func,
             func,
             process_args_func_base(__args),
@@ -33,7 +33,7 @@ def curry_decorator(
             __arity,
         )
 
-    return decorator_function
+    return init_args
 
 
 def curry(
@@ -56,13 +56,13 @@ def curry(
     if func is None:
         return curry_decorator(curry, add, or_, arity=arity)
     elif arity is None:
-        return curry_decorator(curry, add, or_, arity=arity)(func)
+        return curry_decorator(curry, add, or_, arity=arity)(func, *args, **kwargs)
     if arity == 1:
         return func
     if len(args) >= arity:
         return func(*args, **kwargs)
     if arity > 1:
-        return accepting_args(
+        return merge_args(
             curry,
             func,
             add(args),
@@ -87,7 +87,7 @@ def curry_right(
     if len(args) >= arity:
         return func(*args, **kwargs)
     if arity > 1:
-        return accepting_args(
+        return merge_args(
             curry_right,
             func,
             add_right(args),
