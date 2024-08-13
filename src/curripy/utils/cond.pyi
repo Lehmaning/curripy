@@ -1,10 +1,11 @@
 from typing import Callable, TypeVar
 
 from ..__generics import ParamT
-from ..__generics import ReturnT1 as ReturnThen
-from ..__generics import ReturnT2 as ReturnElse
 from .call_ import pass_arg
 from .curry_ import curry
+
+ReturnThen = TypeVar("ReturnThen")
+ReturnElse = TypeVar("ReturnElse")
 
 __all__ = (
     "if_then_else",
@@ -16,7 +17,7 @@ __all__ = (
     "else_",
 )
 
-# FIXME type of partial is incompatible with if_then_else_
+
 def if_then_else_(
     c: Callable[[ParamT], bool],
     f: Callable[[ParamT], ReturnThen],

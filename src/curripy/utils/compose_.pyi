@@ -10,6 +10,7 @@ from ..__generics import (
     ReturnT4,
     ReturnT5,
 )
+from .curry_ import curry
 
 __all__ = (
     "cdot",
@@ -18,12 +19,10 @@ __all__ = (
     "pipe",
 )
 
-def cdot(
-    f: Callable[[ParamT], ReturnT1],
-) -> Callable[[Callable[[ReturnT1], ReturnT2]], ReturnT2]: ...
 def dot(
     f: Callable[[ParamT], ReturnT1], g: Callable[[ReturnT1], ReturnT2]
 ) -> Callable[[ParamT], ReturnT2]: ...
+cdot = curry(dot, arity=2)
 @overload
 def pipe(
     func1: Callable[ArgKwargP, ReturnT1],
