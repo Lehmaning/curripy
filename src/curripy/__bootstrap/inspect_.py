@@ -18,16 +18,21 @@ def get_default(obj: Parameter):
 
 # base function
 signature_parameters = lru_cache()(pipe(signature, get_parameters))
+"""Get parameters from the signature of the function"""
 
 # get Parameter of args and kwargs
 param_var_args: Parameter = lru_cache()(pipe(signature_parameters, itemgetter("args")))(
     def_args_kwargs
 )
+"""Refers to the signature of positional varargs"""
+
 param_var_kwargs: Parameter = lru_cache()(
     pipe(signature_parameters, itemgetter("kwargs"))
 )(def_args_kwargs)
+"""Refers to the signature of keyword varargs"""
 
 is_empty = is_(Signature.empty)
+
 not_var_args = is_not(param_var_args)
 not_var_kwargs = is_not(param_var_kwargs)
 
@@ -39,11 +44,13 @@ filter_out_default_params = filter_(not_have_default)
 
 get_len_of_args = pipe(signature_parameters, len)
 all_params = pipe(signature_parameters, values)
-non_default_params = pipe(
-    all_params,
-    filter_out_default_params,
-    filter_out_var_args,
-    filter_out_var_kwargs,
-    tuple,
+non_default_params = lru_cache()(
+    pipe(
+        all_params,
+        filter_out_default_params,
+        filter_out_var_args,
+        filter_out_var_kwargs,
+        tuple,
+    )
 )
-len_of_non_default_params = lru_cache()(pipe(non_default_params, len))
+len_of_non_default_params = pipe(non_default_params, len)
