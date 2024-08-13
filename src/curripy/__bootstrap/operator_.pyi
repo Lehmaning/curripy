@@ -1,55 +1,53 @@
-from ..utils.curry_ import curry_right
+import operator
 
-from ..__temporary.operator_ import is_ as is__
-from ..__temporary.operator_ import is_not as is_not_
-import operator as o
-from ..utils import curry
+from ..__temporary import operator_ as operator_temporarily_typed
+from ..utils import curry, curry_right
 
-add = curry(o.add, arity=2)
+add = curry(operator_temporarily_typed.add, arity=2)
 """
-add(a)(b)
+>>> add(a)(b)
 
 Same as a + b.
 """
 
-add_right = curry_right(o.add, arity=2)
+radd = curry_right(operator_temporarily_typed.add, arity=2)
 """
-add_right(a)(b)
+>>> radd(a)(b)
 
 Same as b + a.
 """
 
-call = curry(o.call, arity=2)
+call = curry(operator.call, arity=2)
 """
-call(obj)(args, *args, **kwargs)
+>>> call(obj)(args, *args, **kwargs)
 
 Same as obj(args, *args, **kwargs).
 """
 
-is_ = curry(is__, arity=2)
+is_ = curry(operator_temporarily_typed.is_, arity=2)
 """
-is_(a)(b)
+>>> is_(a)(b)
 
 Same as a is b.
 """
 
-is_not = curry(is_not_, arity=2)
+is_not = curry(operator_temporarily_typed.is_not, arity=2)
 """
-is_not(a)(b)
+>>> is_not(a)(b)
 
 Same as a is not b.
 """
 
-or_ = curry(o.or_, arity=2)
+or_ = curry(operator.or_, arity=2)
 """
-or_(a)(b)
+>>> or_(a)(b)
 
 Same as a | b.
 """
 
-getitem = curry_right(o.getitem)
+getitem = curry_right(operator_temporarily_typed.getitem, arity=2)
 """
-getitem(b)(a)
+>>> getitem(b)(a)
 
 Same as a[b].
 """

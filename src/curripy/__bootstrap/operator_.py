@@ -1,5 +1,9 @@
 def add(a):
-    "Same as a + b."
+    """
+    >>> add(a)(b)
+
+    Same as a + b.
+    """
 
     def __b(b):
         nonlocal a
@@ -9,7 +13,11 @@ def add(a):
 
 
 def add_right(a):
-    "Same as b + a."
+    """
+    >>> add_right(a)(b)
+
+    Same as b + a.
+    """
 
     def __b(b):
         nonlocal a
@@ -19,7 +27,11 @@ def add_right(a):
 
 
 def is_(a):
-    "Same as a is b."
+    """
+    >>> is_(a)(b)
+
+    Same as a is b.
+    """
 
     def __b(b):
         nonlocal a
@@ -29,7 +41,11 @@ def is_(a):
 
 
 def is_not(a):
-    "Same as a is not b."
+    """
+    >>> is_not(a)(b)
+
+    Same as a is not b.
+    """
 
     def __b(b):
         nonlocal a
@@ -49,7 +65,11 @@ def call(obj):
 
 
 def or_(a):
-    "Same as a | b."
+    """
+    >>> or_(a)(b)
+
+    Same as a | b.
+    """
 
     def __b(b):
         nonlocal a
@@ -59,7 +79,11 @@ def or_(a):
 
 
 def getitem(a):
-    "Same as a[b]."
+    """
+    >>> getitem(b)(a)
+
+    Same as a[b].
+    """
 
     def __b(b):
         nonlocal a
