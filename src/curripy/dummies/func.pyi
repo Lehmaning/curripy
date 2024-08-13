@@ -1,11 +1,9 @@
 from ..__generics import ReturnT
-from ..utils import curry
+from ..utils import return_
 from ..__bootstrap.dummies import def_args_kwargs
 
 def def_kwargs(**kwargs): ...
 def def_args(*args): ...
-@curry
-def return_(x: ReturnT, _) -> ReturnT: ...
 
 return_true = return_(True)
 return_false = return_(False)
