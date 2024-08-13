@@ -17,12 +17,14 @@ __all__ = (
     "print_",
     "setattr_",
     "values",
+    "startswith",
 )
 
 # exported functions
 hasattr_ = curry_right(hasattr)
 print_ = tap(print)
 help_ = tap(help)
+startswith = curry_right(str.startswith, arity=2)
 
 def next_(
     default: ReturnT2,

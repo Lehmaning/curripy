@@ -1,3 +1,4 @@
+from operator import methodcaller
 from ..utils import curry, curry_right, partial, tap
 from ..__bootstrap.builtins_ import values
 
@@ -11,6 +12,7 @@ __all__ = (
     "print_",
     "setattr_",
     "values",
+    "startswith",
 )
 
 hasattr_ = curry_right(hasattr)
@@ -18,7 +20,7 @@ print_ = tap(print)
 help_ = tap(help)
 isinstance_ = curry_right(isinstance, arity=2)
 issubclass_ = curry_right(issubclass, arity=2)
-
+startswith = curry_right(str.startswith, arity=2)
 
 def next_(default):
     return partial(next, default)
