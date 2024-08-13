@@ -22,3 +22,4 @@ def map_(func):
 
 
 values = methodcaller("values")
+items = methodcaller("items")
