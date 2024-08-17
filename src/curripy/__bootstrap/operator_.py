@@ -1,9 +1,24 @@
-def add(a):
-    """
-    >>> add(a)(b)
+__all__ = (
+    # normal functions
+    "add",
+    "radd",
+    "is_",
+    "is_not",
+    "or_",
+    "call",
+    "getitem",
+    # new functions
+    "pass_arg_",
+    "pass_arg",
+    "attrgetter",
+    "itemgetter",
+    "methodcaller",
+    "radd",
+    "rsub",
+)
 
-    Same as a + b.
-    """
+
+def add(a):
 
     def __b(b):
         nonlocal a
@@ -12,13 +27,7 @@ def add(a):
     return __b
 
 
-def add_right(a):
-    """
-    >>> add_right(a)(b)
-
-    Same as b + a.
-    """
-
+def radd(a):
     def __b(b):
         nonlocal a
         return b + a
@@ -26,13 +35,13 @@ def add_right(a):
     return __b
 
 
+def contains(a):
+    def __b(b):
+        nonlocal a
+        return b in a
+
+
 def is_(a):
-    """
-    >>> is_(a)(b)
-
-    Same as a is b.
-    """
-
     def __b(b):
         nonlocal a
         return a is b
@@ -41,12 +50,6 @@ def is_(a):
 
 
 def is_not(a):
-    """
-    >>> is_not(a)(b)
-
-    Same as a is not b.
-    """
-
     def __b(b):
         nonlocal a
         return a is not b
@@ -55,8 +58,6 @@ def is_not(a):
 
 
 def call(obj):
-    "Same as obj(args, *args, **kwargs)."
-
     def caller(arg, /, *args, **kwargs):
         nonlocal obj
         return obj(arg, *args, **kwargs)
@@ -65,12 +66,6 @@ def call(obj):
 
 
 def or_(a):
-    """
-    >>> or_(a)(b)
-
-    Same as a | b.
-    """
-
     def __b(b):
         nonlocal a
         return a | b
@@ -79,14 +74,20 @@ def or_(a):
 
 
 def getitem(a):
-    """
-    >>> getitem(b)(a)
-
-    Same as a[b].
-    """
-
     def __b(b):
         nonlocal a
         return a[b]
 
     return __b
+
+
+def pass_arg_(arg, func, *args, **kwargs):
+    return func(arg, *args, **kwargs)
+
+
+def pass_arg(arg):
+    def caller(func, *args, **kwargs):
+        nonlocal arg
+        return func(arg, *args, **kwargs)
+
+    return caller

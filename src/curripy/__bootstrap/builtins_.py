@@ -1,9 +1,10 @@
-from operator import methodcaller
+from .operator_ import methodcaller
 
 __all__ = (
     "filter_",
     "map_",
     "values",
+    "keys",
 )
 
 
@@ -23,3 +24,4 @@ def map_(func):
 
 values = methodcaller("values")
 items = methodcaller("items")
+keys = methodcaller("keys")

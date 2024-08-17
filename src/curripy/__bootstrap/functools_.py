@@ -1,4 +1,10 @@
 from ..dummies.obj import obejct_ as __initial_missing
+from ..__overlays.functools_ import lru_cache
+
+__all__ = (
+    "lru_cache",
+    "reduce_generator",
+)
 
 
 def reduce_generator(func, sequence, initial=__initial_missing):
