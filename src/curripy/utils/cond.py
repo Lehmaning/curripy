@@ -1,7 +1,7 @@
-from .call_ import pass_arg
+from ..__bootstrap.operator_ import pass_arg
+from .partial_ import partial
 from .curry_ import curry
 from .identity_ import identity
-from ..utils import partial
 
 __all__ = (
     "if_then_else",
