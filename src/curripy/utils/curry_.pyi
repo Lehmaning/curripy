@@ -132,37 +132,37 @@ def curry_right(
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def curry_right(
-    func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ArgKwargP], ReturnT],
     arity: Literal[2],
-) -> Callable[[ParamT1], Callable[ArgKwargP, ReturnT]]: ...
+) -> Callable[Concatenate[ParamT2, ArgKwargP], Callable[[ParamT1], ReturnT]]: ...
 @overload
 def curry_right(
-    func: Callable[Concatenate[ParamT1, ParamT2, ArgKwargP], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ArgKwargP], ReturnT],
     arity: Literal[3],
 ) -> Callable[
-    ArgKwargP,
+    Concatenate[ParamT3, ArgKwargP],
     Callable[[ParamT2], Callable[[ParamT1], ReturnT]],
 ]: ...
 @overload
 def curry_right(
-    func: Callable[[ParamT1, ParamT2, ParamT3, ParamT4], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ArgKwargP], ReturnT],
     arity: Literal[4],
 ) -> Callable[
     [ParamT4],
     Callable[
-        [ParamT3],
+        Concatenate[ParamT3, ArgKwargP],
         Callable[[ParamT2], Callable[[ParamT1], ReturnT]],
     ],
 ]: ...
 @overload
 def curry_right(
     func: Callable[
-        [ParamT1, ParamT2, ParamT3, ParamT4, ParamT5],
+        Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ArgKwargP],
         ReturnT,
     ],
     arity: Literal[5],
 ) -> Callable[
-    [ParamT5],
+    Concatenate[ParamT5, ArgKwargP],
     Callable[
         [ParamT4],
         Callable[
