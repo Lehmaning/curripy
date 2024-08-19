@@ -1,6 +1,6 @@
 from typing import Callable, TypeVar
 
-from ..__bootstrap.operator_ import pass_arg
+from ..__bootstrap.operator_ import argpasser
 from ..__generics import ParamT
 from .curry_ import curry
 
@@ -16,7 +16,6 @@ __all__ = (
     "then",
     "else_",
 )
-
 
 def if_then_else_(
     c: Callable[[ParamT], bool],
@@ -34,5 +33,5 @@ if_then = curry(if_then_, arity=2)
 if_ = if_then_else
 
 # FIXME type of then and else_ are incompatible with pipe
-then = pass_arg
-else_ = pass_arg
+then = argpasser
+else_ = argpasser

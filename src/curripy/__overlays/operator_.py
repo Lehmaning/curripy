@@ -2,7 +2,7 @@
 Some functions of operator with better type hints
 """
 
-from operator import is_, is_not, add, sub, rshift, lshift, contains
+from operator import add, contains, getitem, is_, is_not, lshift, or_, rshift, sub
 
 __all__ = (
     "is_",
@@ -12,13 +12,29 @@ __all__ = (
     "contains",
     "rshift",
     "lshift",
+    "getitem",
+    # "or_",
+    "itemgetter",
+    "methodcaller",
+    "attrgetter",
     # new functions
     "radd",
     "rsub",
-    "itemgetter",
-    "methodcaller",
-    "attrgetter"
+    "argpasser",
+    "pass_arg",
 )
+
+
+def pass_arg(arg, func, *args, **kwargs):
+    return func(arg, *args, **kwargs)
+
+
+def argpasser(arg, *args, **kwargs):
+    def caller(func):
+        nonlocal arg, args, kwargs
+        return func(arg, *args, **kwargs)
+
+    return caller
 
 
 def radd(a, b):
