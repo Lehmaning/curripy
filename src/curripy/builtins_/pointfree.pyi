@@ -2,10 +2,10 @@ from typing import Any, Callable, Iterable
 
 from typing_extensions import TypeIs
 
+from ..__bootstrap.builtins_ import items, values
 from ..__generics import ReturnT, ReturnT1, ReturnT2
-from ..utils import curry, curry_right, tap
-from ..__bootstrap.builtins_ import values
 from ..dummies.type import _ClassInfo
+from ..utils import curry, curry_right, tap
 
 __all__ = (
     "getattr_",
@@ -18,6 +18,7 @@ __all__ = (
     "setattr_",
     "values",
     "startswith",
+    "items",
 )
 
 # exported functions

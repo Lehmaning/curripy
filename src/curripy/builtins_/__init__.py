@@ -1,4 +1,4 @@
-from .curried import divmod_, filter_, map_
+from .curried import divmod_, filter_, map_, rdivmod
 from .pointfree import (
     getattr_,
     hasattr_,
@@ -9,12 +9,17 @@ from .pointfree import (
     print_,
     setattr_,
     values,
+    items,
+    startswith,
 )
 
 __all__ = (
+    # from curried
+    "rdivmod",
     "divmod_",
-    "map_",
     "filter_",
+    "map_",
+    # from pointfree
     "getattr_",
     "hasattr_",
     "help_",
@@ -24,4 +29,6 @@ __all__ = (
     "print_",
     "setattr_",
     "values",
+    "items",
+    "startswith",
 )

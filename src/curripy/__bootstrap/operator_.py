@@ -1,3 +1,6 @@
+from ..__overlays.operator_ import attrgetter, itemgetter, methodcaller
+from ..__overlays.operator_ import pass_arg, argpasser
+
 __all__ = (
     # normal functions
     "add",
@@ -5,21 +8,18 @@ __all__ = (
     "is_",
     "is_not",
     "or_",
-    "call",
-    "getitem",
+    "contains",
     # new functions
-    "pass_arg_",
     "pass_arg",
+    "argpasser",
     "attrgetter",
     "itemgetter",
     "methodcaller",
     "radd",
-    "rsub",
 )
 
 
 def add(a):
-
     def __b(b):
         nonlocal a
         return a + b
@@ -33,12 +33,6 @@ def radd(a):
         return b + a
 
     return __b
-
-
-def contains(a):
-    def __b(b):
-        nonlocal a
-        return b in a
 
 
 def is_(a):
@@ -57,14 +51,6 @@ def is_not(a):
     return __b
 
 
-def call(obj):
-    def caller(arg, /, *args, **kwargs):
-        nonlocal obj
-        return obj(arg, *args, **kwargs)
-
-    return caller
-
-
 def or_(a):
     def __b(b):
         nonlocal a
@@ -73,21 +59,18 @@ def or_(a):
     return __b
 
 
-def getitem(a):
+def in_(a):
     def __b(b):
         nonlocal a
-        return a[b]
+        return b in a
 
     return __b
 
 
-def pass_arg_(arg, func, *args, **kwargs):
-    return func(arg, *args, **kwargs)
+# pointfree style functions
+def contains(b):
+    def __a(a):
+        nonlocal b
+        return b in a
 
-
-def pass_arg(arg):
-    def caller(func, *args, **kwargs):
-        nonlocal arg
-        return func(arg, *args, **kwargs)
-
-    return caller
+    return __a

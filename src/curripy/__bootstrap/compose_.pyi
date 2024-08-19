@@ -13,16 +13,30 @@ from ..__generics import (
 from ..utils import curry
 
 __all__ = (
-    "cdot",
     "dot",
+    "cdot",
     "compose",
     "pipe",
 )
 
 def dot(
     f: Callable[[ParamT], ReturnT1], g: Callable[[ReturnT1], ReturnT2]
-) -> Callable[[ParamT], ReturnT2]: ...
+) -> Callable[[ParamT], ReturnT2]:
+    """
+    A function that acts lke '.' in Haskell, which does not mean the dot operator between matrices.
+
+    Args:
+        f (Callable[[ParamT], ReturnT1]): first function
+        g (Callable[[ReturnT1], ReturnT2]): second function
+
+    Returns:
+        Callable[[ParamT], ReturnT2]: composed function
+    """
+    ...
+
 cdot = curry(dot, arity=2)
+"""Same as dot, but curried."""
+
 @overload
 def pipe(
     func1: Callable[ArgKwargP, ReturnT1],

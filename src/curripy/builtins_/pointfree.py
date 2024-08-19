@@ -1,6 +1,5 @@
-from operator import methodcaller
+from ..__bootstrap.builtins_ import items, values
 from ..utils import curry, curry_right, partial, tap
-from ..__bootstrap.builtins_ import values
 
 __all__ = (
     "getattr_",
@@ -13,6 +12,7 @@ __all__ = (
     "setattr_",
     "values",
     "startswith",
+    "items",
 )
 
 hasattr_ = curry_right(hasattr)
@@ -20,7 +20,7 @@ print_ = tap(print)
 help_ = tap(help)
 isinstance_ = curry_right(isinstance, arity=2)
 issubclass_ = curry_right(issubclass, arity=2)
-startswith = curry_right(str.startswith, arity=2)
+
 
 def next_(default):
     return partial(next, default)
@@ -39,3 +39,7 @@ def getattr_(name, default=None):
         return getattr(o, name, default)
 
     return __get_object
+
+
+# methods
+startswith = curry_right(str.startswith, arity=2)

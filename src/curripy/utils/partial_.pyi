@@ -23,7 +23,8 @@ __all__ = (
 def partial(func: Callable[ArgKwargP, ReturnT]) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def partial(
-    func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT], arg1: ParamT1,
+    func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT],
+    arg1: ParamT1,
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def partial(
@@ -65,7 +66,9 @@ def partial(
     **kwargs: ArgKwargP.kwargs,
 ) -> Callable[..., ReturnT]: ...
 @overload
-def partial_right(func: Callable[ArgKwargP, ReturnT]) -> Callable[ArgKwargP, ReturnT]: ...
+def partial_right(
+    func: Callable[ArgKwargP, ReturnT],
+) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def partial_right(
     func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT], arg1: ParamT1

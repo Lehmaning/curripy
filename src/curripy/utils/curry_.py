@@ -1,4 +1,4 @@
-from ..__bootstrap.inspect_ import len_of_non_default_params
+from ..__bootstrap.inspect_ import len_of_regular_args
 from ..__bootstrap.operator_ import or_, radd, add
 
 __all__ = (
@@ -15,7 +15,7 @@ def __init_args(
         nonlocal arity
         init_args = () if args is None else args
         init_kwargs = {} if kwargs is None else kwargs
-        init_arity = len_of_non_default_params(func) if arity is None else arity
+        init_arity = len_of_regular_args(func) if arity is None else arity
         return recursion(func, init_arity, *init_args, **init_kwargs)
 
     return caller
@@ -71,7 +71,7 @@ def __define_order(process_args, process_kwargs=or_):
             return decorator
         if arity is None:
             # Func getted. Determining length of paratmeters
-            init_arity = decorator(func, *args, **kwargs)
+            init_arity = decorator(func=func, *args, **kwargs)
             return init_arity
         elif len(args) >= arity:
             # Received enough parameters, call the func
@@ -81,10 +81,10 @@ def __define_order(process_args, process_kwargs=or_):
                 __self,
                 func,
                 arity,
-                process_args,
-                process_kwargs,
-                args,
-                kwargs,
+                process_args=process_args,
+                process_kwargs=process_kwargs,
+                args=args,
+                kwargs=kwargs,
             )
         return func
 

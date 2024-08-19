@@ -1,6 +1,8 @@
 from functools import reduce
 
-from .operator_ import pass_arg_
+from curripy.__bootstrap.identity_ import identity
+
+from .operator_ import pass_arg
 
 __all__ = (
     "dot",
@@ -11,10 +13,6 @@ __all__ = (
 
 
 def cdot(f):
-    """
-    Same as dot, but curried.
-    """
-
     def __dot(g):
         def caller(x):
             nonlocal f
@@ -27,17 +25,6 @@ def cdot(f):
 
 
 def dot(f, g):
-    """
-    A function that acts lke '.' in Haskell, which does not mean the dot operator between matrices.
-
-    Args:
-        f (Callable[[ParamT], ReturnT1]): first function
-        g (Callable[[ReturnT1], ReturnT2]): second function
-
-    Returns:
-        Callable[[ParamT], ReturnT2]: composed function
-    """
-
     def caller(x):
         nonlocal f
         nonlocal g
@@ -46,23 +33,24 @@ def dot(f, g):
     return caller
 
 
-def pipe(*funcs):
-    if len(funcs) == 1:
-        return funcs[0]
+def __define_order(order):
+    def portal(*funcs):
+        nonlocal order
 
-    def reducer(instance=None):
-        nonlocal funcs
-        return reduce(pass_arg_, funcs, instance)
+        def reducer(instance=None):
+            nonlocal funcs
+            return reduce(pass_arg, order(funcs), instance)
 
-    return reducer
+        if len(funcs) < 1:
+            return identity
+        elif len(funcs) == 1:
+            func, *_ = funcs
+            return func
+
+        return reducer
+
+    return portal
 
 
-def compose(*funcs):
-    if len(funcs) == 1:
-        return funcs[0]
-
-    def reducer(instance):
-        nonlocal funcs
-        return reduce(pass_arg_, reversed(funcs), instance)
-
-    return reducer
+pipe = __define_order(identity)
+compose = __define_order(reversed)

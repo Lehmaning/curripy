@@ -1,18 +1,18 @@
 from typing import (
-    Concatenate,
     Callable,
+    Concatenate,
     Literal,
     overload,
 )
 
-from ..__generics import ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ReturnT, ArgKwargP
+from ..__generics import ArgKwargP, ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ReturnT
 
 __all__ = (
     "curry",
     "curry_right",
 )
 
-# TODO correct types for curry_decorator
+# FIXME the generic type only picks the first overloaded type
 @overload
 def curry(
     func: Callable[[ParamT1], ReturnT],
@@ -132,37 +132,37 @@ def curry_right(
 ) -> Callable[ArgKwargP, ReturnT]: ...
 @overload
 def curry_right(
-    func: Callable[Concatenate[ParamT1, ParamT2, ArgKwargP], ReturnT],
+    func: Callable[Concatenate[ParamT1, ArgKwargP], ReturnT],
     arity: Literal[2],
-) -> Callable[Concatenate[ParamT2, ArgKwargP], Callable[[ParamT1], ReturnT]]: ...
+) -> Callable[ArgKwargP, Callable[[ParamT1], ReturnT]]: ...
 @overload
 def curry_right(
-    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ArgKwargP], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ArgKwargP], ReturnT],
     arity: Literal[3],
 ) -> Callable[
-    Concatenate[ParamT3, ArgKwargP],
+    ArgKwargP,
     Callable[[ParamT2], Callable[[ParamT1], ReturnT]],
 ]: ...
 @overload
 def curry_right(
-    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ArgKwargP], ReturnT],
+    func: Callable[Concatenate[ParamT1, ParamT2, ParamT3, ArgKwargP], ReturnT],
     arity: Literal[4],
 ) -> Callable[
-    [ParamT4],
+    ArgKwargP,
     Callable[
-        Concatenate[ParamT3, ArgKwargP],
+        [ParamT3],
         Callable[[ParamT2], Callable[[ParamT1], ReturnT]],
     ],
 ]: ...
 @overload
 def curry_right(
     func: Callable[
-        Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ParamT5, ArgKwargP],
+        Concatenate[ParamT1, ParamT2, ParamT3, ParamT4, ArgKwargP],
         ReturnT,
     ],
     arity: Literal[5],
 ) -> Callable[
-    Concatenate[ParamT5, ArgKwargP],
+    ArgKwargP,
     Callable[
         [ParamT4],
         Callable[

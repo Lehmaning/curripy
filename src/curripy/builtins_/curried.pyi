@@ -1,18 +1,19 @@
 from typing_extensions import TypeIs
 
-from ..utils import curry
-
-from ..__bootstrap.builtins_ import map_, filter_
+from ..__bootstrap.builtins_ import filter_, map_
 from ..dummies.type import _ClassInfo
+from ..utils import curry, curry_right
 
 __all__ = (
     "divmod_",
+    "rdivmod",
     "map_",
     "filter_",
 )
 
 issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)
+rdivmod = curry_right(divmod)
 
 @curry
 def isinstance_(

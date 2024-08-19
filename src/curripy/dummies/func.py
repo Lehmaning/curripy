@@ -1,11 +1,7 @@
-from ..utils import curry
-from ..__bootstrap.dummies import def_args_kwargs
-
 __all__ = (
     "def_kwargs",
     "def_args",
     "def_args_kwargs",
-    "return_",
     "return_true",
     "return_false",
     "return_0",
@@ -13,13 +9,9 @@ __all__ = (
 )
 
 
+def def_args_kwargs(*args, **kwargs): ...
 def def_kwargs(**kwargs): ...
 def def_args(*args): ...
-
-
-@curry
-def return_(x, _):
-    return x
 
 
 def return_true(_):

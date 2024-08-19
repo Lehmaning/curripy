@@ -1,18 +1,21 @@
+from curripy.utils.curry_ import curry_right
 from ..utils import curry
 from ..__bootstrap.builtins_ import map_, filter_
 
 __all__ = (
     "divmod_",
+    "rdivmod",
     "map_",
     "filter_",
 )
 
-isinstance_ = curry(isinstance)
-issubclass_ = curry(issubclass)
 divmod_ = curry(divmod)
+rdivmod = curry_right(divmod)
+isinstance_ = curry(isinstance, arity=2)
+issubclass_ = curry(issubclass, arity=2)
 
 
-# Belows are not exported to the root package by default
+# not exported
 @curry
 def getattr_(o, name, default=None):
     return getattr(o, name, default)
