@@ -21,6 +21,9 @@ __all__ = (
     "ArgKwargP",
 )
 
+# FIXME the type gymnastics seems unable to cover all type of functions decorated by @overload
+# FIXME TypeVar seems unable to hint values as Literal type
+# TODO if possible, a mypy plugin is needed to correct types
 ReturnT = TypeVar("ReturnT")
 ReturnT1 = TypeVar("ReturnT1")
 ReturnT2 = TypeVar("ReturnT2")
@@ -34,5 +37,10 @@ ParamT2 = TypeVar("ParamT2")
 ParamT3 = TypeVar("ParamT3")
 ParamT4 = TypeVar("ParamT4")
 ParamT5 = TypeVar("ParamT5")
+
+ReturnTCon = TypeVar("ReturnTCon", contravariant=True)
+ReturnTCov = TypeVar("ReturnTCov", covariant=True)
+ParamTCon = TypeVar("ParamTCon", contravariant=True)
+ParamTCov = TypeVar("ParamTCov", covariant=True)
 
 ArgKwargP = ParamSpec("ArgKwargP")
