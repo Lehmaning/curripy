@@ -19,14 +19,19 @@ from curripy import (
 from curripy.dummies.func import return_1, return_0
 
 
+def __test_varargs(x, *args, **kwargs):
+    return x
+
+
 def test_curry():
     assert curry(lambda x, y, z: (x + y) * z)(1)(2)(3) == (1 + 2) * 3
     assert curry_right(lambda x, y, z: (x + y) * z)(3)(2)(1) == (1 + 2) * 3
+    assert curry(__test_varargs, arity=2)("a")(1, 2, 3) == "a"
 
 
 def test_partial():
-    assert not isinstance(partial(lambda x, y: 1, 1, y=2), partial_)
-    assert partial(lambda x, y: 1, 1, y=2)() == partial_(lambda x, y: 1, 1)(2)
+    assert partial(lambda x, y: 1, 1)(2) == partial_(lambda x, y: 1, 1)(2)
+    assert partial(lambda x, y: 1, 1, 2)() == partial_(lambda x, y: 1, 1, 2)()
 
 
 def test_compose():
