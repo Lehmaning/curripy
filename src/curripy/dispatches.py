@@ -1,6 +1,6 @@
 from functools import singledispatch
 import sys
-from typing import AnyStr
+from typing import AnyStr, SupportsAbs
 
 from curripy.protocols import SupportsSplit
 
@@ -13,7 +13,6 @@ def split(instance: SupportsSplit):
 @split.register(str)
 def __str_split(instance: str):
     return instance.split
-
 
 if "re" in sys.modules:
     from re import Pattern

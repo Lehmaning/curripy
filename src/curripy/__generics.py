@@ -22,7 +22,7 @@ __all__ = (
 )
 
 # FIXME the type gymnastics seems unable to cover all type of functions decorated by @overload
-# FIXME TypeVar seems unable to hint values as Literal type
+# FIXME TypeVar seems unable to inherit litreals from Literal type
 # TODO if possible, a mypy plugin is needed to correct types
 ReturnT = TypeVar("ReturnT")
 ReturnT1 = TypeVar("ReturnT1")

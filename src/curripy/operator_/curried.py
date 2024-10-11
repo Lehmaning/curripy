@@ -1,16 +1,16 @@
 import operator
 
-from ..utils import curry
 from ..__bootstrap.operator_ import (
-    is_,
-    is_not,
     add,
     contains,
-    radd,
-    or_,
     in_,
+    is_,
+    is_not,
+    or_,
+    radd,
 )
 from ..__overlays import operator_ as operator_temporarily_typed
+from ..utils import curry
 
 __all__ = (
     "add",
