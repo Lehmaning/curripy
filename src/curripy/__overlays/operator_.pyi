@@ -1,3 +1,4 @@
+import operator
 from typing import Any, Callable, Concatenate, Protocol, Container, Sequence, TypeGuard
 
 from typing_extensions import TypeIs
@@ -7,7 +8,6 @@ from curripy.utils.curry_ import curry_right
 from ..__generics import (
     ArgKwargP,
     ParamT,
-    ParamT1,
     ParamTCon,
     ReturnT,
     ReturnTCov,
@@ -52,8 +52,6 @@ def sub(a: SupportsSub[ParamTCon, ReturnTCov], b: ParamTCon) -> ReturnTCov: ...
 def rsub(a: SupportsRSub[ParamTCon, ReturnTCov], b: ParamTCon) -> ReturnTCov: ...
 def rshift(a: SupportsRShift[ParamTCon, ReturnTCov], b: ParamTCon) -> ReturnTCov: ...
 def lshift(a: SupportsLShift[ParamTCon, ReturnTCov], b: ParamTCon) -> ReturnTCov: ...
-def attrgetter(name: str) -> Callable[[object], Any]: ...
-def methodcaller(name: str, *args: Any, **kwargs: Any) -> Callable[[object], Any]: ...
 def getitem(
     a: SupportsContainsAndGetItem[ParamTCon, ReturnTCov], b: ParamTCon
 ) -> ReturnTCov: ...
@@ -67,5 +65,6 @@ def argpasser(
     arg: ParamT, *args: Any, **kwargs: Any
 ) -> Callable[[Callable[Concatenate[ParamT, ArgKwargP], ReturnT]], ReturnT]: ...
 def contains(a: Container[Any], b: ParamT) -> TypeGuard[ParamT]: ...
-
-itemgetter = curry_right(getitem, arity=2)
+itemgetter = operator.itemgetter
+methodcaller = operator.methodcaller
+attrgetter = operator.attrgetter
