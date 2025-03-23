@@ -11,3 +11,5 @@ wheels/
 
 .pypirc
 build-*
+
+pyproject-rye.toml
