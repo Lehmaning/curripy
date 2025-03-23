@@ -1,4 +1,3 @@
-from ..__bootstrap.operator_ import argpasser
 from .partial_ import partial
 from .curry_ import curry
 from .identity_ import identity
@@ -28,10 +27,11 @@ def if_then_(
     f,
 ):
     return partial(if_then_else_, c, f, identity)
-
+def cond(c, f, e):
+    return partial(if_then_else_, c, f, e)
 
 if_then_else = curry(if_then_else_, arity=4)
 if_then = curry(if_then_, arity=2)
-if_ = if_then_else
-then = argpasser
-else_ = argpasser
+if_ = identity
+then = identity
+else_ = identity

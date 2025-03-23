@@ -61,6 +61,7 @@ from .utils import (
     pipe,
     tap,
     then,
+    cond,
 )
 
 __all__ = (
@@ -115,6 +116,7 @@ __all__ = (
     # From utils
     "pipe",
     "compose",
+    "cond",
     "cdot",
     "dot",
     "curry",

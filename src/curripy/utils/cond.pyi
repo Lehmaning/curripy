@@ -1,6 +1,7 @@
 from typing import Callable, TypeVar
 
-from ..__bootstrap.operator_ import argpasser
+from curripy.__bootstrap.identity_ import identity
+
 from ..__generics import ParamT
 from .curry_ import curry
 
@@ -30,8 +31,24 @@ def if_then_(
 
 if_then_else = curry(if_then_else_, arity=4)
 if_then = curry(if_then_, arity=2)
-if_ = if_then_else
 
-# FIXME type of then and else_ are incompatible with pipe
-then = argpasser
-else_ = argpasser
+def cond(
+    c: Callable[[ParamT], bool],
+    f: Callable[[ParamT], ReturnThen],
+    e: Callable[[ParamT], ReturnElse],
+) -> Callable[[ParamT], ReturnThen | ReturnElse]:
+    """This function uses dummy typing for directly mark the type of the return function.
+
+    Args:
+        c (Callable[[ParamT], bool]): condition
+        f (Callable[[ParamT], ReturnThen]): then
+        e (Callable[[ParamT], ReturnElse]): else
+
+    Returns:
+        Callable[[ParamT], ReturnThen | ReturnElse]: result function
+    """
+    ...
+
+if_ = identity
+then = identity
+else_ = identity

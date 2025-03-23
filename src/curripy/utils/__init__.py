@@ -1,5 +1,5 @@
 from .compose_ import cdot, compose, dot, pipe
-from .cond import else_, if_, if_then, if_then_else, then
+from .cond import else_, if_, if_then, if_then_else, then, cond
 from .curry_ import curry, curry_right
 from .identity_ import identity
 from .partial_ import partial
@@ -18,6 +18,7 @@ __all__ = (
     "if_",
     "then",
     "else_",
+    "cond",
     "if_then",
     "if_then_else",
     # misc
