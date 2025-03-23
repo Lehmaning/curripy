@@ -21,9 +21,6 @@ __all__ = (
     "ArgKwargP",
 )
 
-# FIXME the type gymnastics seems unable to cover all type of functions decorated by @overload
-# FIXME TypeVar seems unable to inherit litreals from Literal type
-# TODO if possible, a mypy plugin is needed to correct types
 ReturnT = TypeVar("ReturnT")
 ReturnT1 = TypeVar("ReturnT1")
 ReturnT2 = TypeVar("ReturnT2")

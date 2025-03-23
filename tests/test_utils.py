@@ -19,6 +19,7 @@ from curripy import (
 )
 from curripy.dummies.func import return_0, return_1, return_false, return_true
 from curripy.utils.cond import if_then
+from curripy.utils.partial_ import partial_right
 
 
 def test_curry():
@@ -33,7 +34,6 @@ def test_curry_varargs():
             x,
             *args,
         )
-
     assert curry(__test_varargs, arity=2)("a")(1, 2, 3) == ("a", 1, 2, 3)
 
 
@@ -41,6 +41,10 @@ def test_partial():
     assert partial(lambda x, y: 1, 1)(2) == partial_(lambda x, y: 1, 1)(2)
     assert partial(lambda x, y: 1, 1, 2)() == partial_(lambda x, y: 1, 1, 2)()
 
+
+def test_partial_right():
+    assert partial_right(lambda x, y: 1, 2)(1) == partial_(lambda x, y: 1, 1)(2)
+    assert partial_right(lambda x, y: 1, 1, 2)() == partial_(lambda x, y: 1, 1, 2)()
 
 def test_compose():
     expr = (3 + 1) * 2
@@ -86,3 +90,6 @@ def test_cond():
 def test_if_then():
     assert if_then(lambda x: True)(return_true)(return_false) is True
     assert if_then(lambda x: False)(return_true)(return_false) is False
+
+def test_arity():
+    assert curry(lambda x: 1)(1) == curry(lambda x: 1, arity=1)(1)

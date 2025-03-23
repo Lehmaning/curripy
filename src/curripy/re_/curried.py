@@ -1,4 +1,6 @@
 import re
+
+from curripy.utils.curry_ import curry_right
 from ..utils import curry
 
 __all__ = ()
@@ -11,3 +13,4 @@ match_ = curry(re.match)
 search = curry(re.search)
 sub = curry(re.sub)
 subn = curry(re.subn)
+split = curry(re.split, arity=2)

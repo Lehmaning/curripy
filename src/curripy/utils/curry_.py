@@ -1,95 +1,35 @@
 from ..__bootstrap.inspect_ import len_of_regular_args
 from ..__bootstrap.operator_ import or_, radd, add
 
-__all__ = (
-    "curry",
-    "curry_right",
-)
+__all__ = ("curry", "curry_right")
 
 
-def __init_args(
-    recursion,
-    arity: int | None = None,
+def make_curry(
+    process_args=add,
+    process_kwargs=or_, # use | to compose dict
 ):
-    def caller(func, *args, **kwargs):
-        nonlocal arity
-        init_args = () if args is None else args
-        init_kwargs = {} if kwargs is None else kwargs
-        init_arity = len_of_regular_args(func) if arity is None else arity
-        return recursion(func, init_arity, *init_args, **init_kwargs)
-
-    return caller
-
-
-def __merge_args(
-    recursion,
-    func,
-    arity,
-    process_args,
-    process_kwargs,
-    args,
-    kwargs,
-):
-    def caller(*passing_args, **passing_kwargs):
-        return recursion(
-            func,
-            arity,
-            *process_args(args)(passing_args),
-            **process_kwargs(kwargs)(passing_kwargs),
-        )
-
-    return caller
-
-
-def __define_order(process_args, process_kwargs=or_):
-    def curry(
-        func=None,
-        arity: int | None = None,
-        *args,
-        **kwargs,
-    ):
-        """
-        This function gets arguments recursively, and call the passed function after being received enough positional arguments which have the same amount of the arity.
-        Currently any keywords arguments will be overwritten by keywords newly passed in any generation of curried function.
-
-        Args:
-            func (Callable[ArgumentType, ReturnT]): the function to be curried.
-            arity (int | None, optional): max number of arguments to be passed. Defaults to None.
-
-        Returns:
-            Callable | ReturnT: a partial applied function or final return of the function
-        """
-        nonlocal process_args, process_kwargs
-        __self = curry
-        decorator = __init_args(
-            __self,
-            arity,
-        )
-
+    def currier(*args, func=None, arity=None, **kwargs):
         if func is None:
-            # As a decorator to receive a Callable
-            return decorator
-        if arity is None:
-            # Func getted. Determining length of paratmeters
-            init_arity = decorator(func=func, *args, **kwargs)
-            return init_arity
-        elif len(args) >= arity:
-            # Received enough parameters, call the func
+            return lambda f: currier(f, arity, *args, **kwargs)
+
+        resolved_arity = len_of_regular_args(func) if arity is None else arity
+
+        if len(args) == resolved_arity:
             return func(*args, **kwargs)
-        elif arity > 1:
-            return __merge_args(
-                __self,
-                func,
-                arity,
-                process_args=process_args,
-                process_kwargs=process_kwargs,
-                args=args,
-                kwargs=kwargs,
-            )
-        return func
+        elif len(args) > resolved_arity:
+            raise ValueError("Too much arguments.")
 
-    return curry
+        def wrapper(*new_args, **new_kwargs):
+            if len(new_args) <= 0:
+                raise ValueError("Arguments needed.")
+            merged_args = process_args(args)(new_args)
+            merged_kwargs = process_kwargs(kwargs)(new_kwargs)
+            return currier(func, resolved_arity, *merged_args, **merged_kwargs)
+
+        return wrapper
+
+    return currier
 
 
-curry = __define_order(add)
-curry_right = __define_order(radd)
+curry = make_curry(add)
+curry_right = make_curry(radd)
