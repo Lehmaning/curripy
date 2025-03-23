@@ -1,9 +1,14 @@
 import operator
-from typing import Any, Callable, Concatenate, Protocol, Container, Sequence, TypeGuard
+from typing import (
+    Any,
+    Callable,
+    Concatenate,
+    Container,
+    TypeGuard,
+)
 
 from typing_extensions import TypeIs
 
-from curripy.utils.curry_ import curry_right
 
 from ..__generics import (
     ArgKwargP,
@@ -62,9 +67,13 @@ def pass_arg(
     **kwargs: ArgKwargP.kwargs,
 ) -> ReturnT: ...
 def argpasser(
-    arg: ParamT, *args: Any, **kwargs: Any
-) -> Callable[[Callable[Concatenate[ParamT, ArgKwargP], ReturnT]], ReturnT]: ...
+    arg: ParamT,
+) -> Callable[
+    [Callable[[ParamT], ReturnT]],
+    ReturnT,
+]: ...
 def contains(a: Container[Any], b: ParamT) -> TypeGuard[ParamT]: ...
+
 itemgetter = operator.itemgetter
 methodcaller = operator.methodcaller
 attrgetter = operator.attrgetter
