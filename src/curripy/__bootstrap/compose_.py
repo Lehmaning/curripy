@@ -34,7 +34,7 @@ def dot(f, g):
 
 
 def __define_order(order):
-    def portal(*funcs):
+    def pipe(*funcs):
         nonlocal order
 
         def reducer(instance=None):
@@ -49,7 +49,7 @@ def __define_order(order):
 
         return reducer
 
-    return portal
+    return pipe
 
 
 pipe = __define_order(identity)

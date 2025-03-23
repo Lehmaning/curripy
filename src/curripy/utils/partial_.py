@@ -7,7 +7,7 @@ __all__ = (
 
 
 def __init_order(process_args, process_kwargs=or_):
-    def portal(func, *args, **kwargs):
+    def partial(func, *args, **kwargs):
         def caller(*passing_args, **passing_kwargs):
             nonlocal process_args, process_kwargs, args, kwargs, func
             apply_args = process_args(args)(passing_args)
@@ -16,7 +16,7 @@ def __init_order(process_args, process_kwargs=or_):
 
         return caller
 
-    return portal
+    return partial
 
 
 partial = __init_order(add)

@@ -42,7 +42,7 @@ def __merge_args(
 
 
 def __define_order(process_args, process_kwargs=or_):
-    def portal(
+    def curry(
         func=None,
         arity: int | None = None,
         *args,
@@ -60,7 +60,7 @@ def __define_order(process_args, process_kwargs=or_):
             Callable | ReturnT: a partial applied function or final return of the function
         """
         nonlocal process_args, process_kwargs
-        __self = portal
+        __self = curry
         decorator = __init_args(
             __self,
             arity,
@@ -88,7 +88,7 @@ def __define_order(process_args, process_kwargs=or_):
             )
         return func
 
-    return portal
+    return curry
 
 
 curry = __define_order(add)
