@@ -1,5 +1,5 @@
-from typing import Any, Awaitable, Iterable, Protocol, Self
-from .__generics import ArgKwargP, ParamTCon, ReturnTCov
+from typing import Any, Awaitable, Protocol
+from .__generics import ParamTCon, ReturnTCov
 
 
 class SupportsContains(Protocol):
@@ -94,8 +94,3 @@ class SupportsAllComparisons(
     SupportsGE[Any],
     Protocol,
 ): ...
-
-
-# protocols of non-dunder methods
-class SupportsSplit(Protocol):
-    def split(self, *args, **kwargs) -> Iterable: ...
