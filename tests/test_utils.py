@@ -7,26 +7,33 @@ from curripy import (
     curry,
     curry_right,
     dot,
-    else_,
     eq,
     if_,
+    else_,
+    then,
     if_then_else,
     mul,
     partial,
     pipe,
-    then,
+    cond,
 )
 from curripy.dummies.func import return_1, return_0
 
 
-def __test_varargs(x, *args, **kwargs):
-    return x
-
-
 def test_curry():
-    assert curry(lambda x, y, z: (x + y) * z)(1)(2)(3) == (1 + 2) * 3
-    assert curry_right(lambda x, y, z: (x + y) * z)(3)(2)(1) == (1 + 2) * 3
-    assert curry(__test_varargs, arity=2)("a")(1, 2, 3) == "a"
+    expr = (1 + 2) * 3
+    assert curry(lambda x, y, z: (x + y) * z)(1)(2)(3) == expr
+    assert curry_right(lambda x, y, z: (x + y) * z)(3)(2)(1) == expr
+
+
+def test_curry_varargs():
+    def __test_varargs(x, *args, **kwargs):
+        return (
+            x,
+            *args,
+        )
+
+    assert curry(__test_varargs, arity=2)("a")(1, 2, 3) == ("a", 1, 2, 3)
 
 
 def test_partial():
@@ -35,20 +42,41 @@ def test_partial():
 
 
 def test_compose():
-    assert dot(add(1), mul(2))(3) == (3 + 1) * 2
-    assert cdot(add(1))(mul(2))(3) == (3 + 1) * 2
-    assert compose(mul(2), add(1))(3) == (3 + 1) * 2
-    assert pipe(add(1), mul(2))(3) == (3 + 1) * 2
+    expr = (3 + 1) * 2
+    assert cdot(add(1))(mul(2))(3) == expr
+    assert (
+        dot(
+            add(1),
+            mul(2),
+        )(3)
+        == expr
+    )
+    assert (
+        compose(
+            mul(2),
+            add(1),
+        )(3)
+        == expr
+    )
+    assert (
+        pipe(
+            add(1),
+            mul(2),
+        )(3)
+        == expr
+    )
 
 
 def test_cond():
-    cond_flow = pipe(
+    def expr(x):
+        return 1 if x == 2 else 0
+
+    cond_single = if_then_else(eq(2))(return_1)(return_0)
+    cond_spec = cond(
         if_(eq(2)),
         then(return_1),
         else_(return_0),
     )
-
-    cond_single = if_then_else(eq(2))(lambda x: 1)(lambda x: 0)
-
-    assert cond_single(1 + 1) == (1 if 1 + 1 == 2 else 0)
-    assert cond_flow(1 + 1) == (1 if 1 + 1 == 2 else 0)
+    assert cond_single(1 + 1) == expr(1 + 1)
+    assert cond_spec(1 + 1) == expr(1 + 1)
+    assert cond_spec(1 + 2) == expr(1 + 2)
