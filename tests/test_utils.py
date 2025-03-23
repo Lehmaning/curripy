@@ -4,20 +4,21 @@ from curripy import (
     add,
     cdot,
     compose,
+    cond,
     curry,
     curry_right,
     dot,
+    else_,
     eq,
     if_,
-    else_,
-    then,
     if_then_else,
     mul,
     partial,
     pipe,
-    cond,
+    then,
 )
-from curripy.dummies.func import return_1, return_0
+from curripy.dummies.func import return_0, return_1, return_false, return_true
+from curripy.utils.cond import if_then
 
 
 def test_curry():
@@ -80,3 +81,8 @@ def test_cond():
     assert cond_single(1 + 1) == expr(1 + 1)
     assert cond_spec(1 + 1) == expr(1 + 1)
     assert cond_spec(1 + 2) == expr(1 + 2)
+
+
+def test_if_then():
+    assert if_then(lambda x: True)(return_true)(return_false) is True
+    assert if_then(lambda x: False)(return_true)(return_false) is False
