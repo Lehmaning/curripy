@@ -3,7 +3,7 @@ Generic types which are signed for types of return values and types of parameter
 Splitting them into a module for reusing.
 """
 
-from typing import TypeVar, ParamSpec
+from typing import TypeVar, ParamSpec, TypeVarTuple
 
 __all__ = (
     "ReturnT",
@@ -41,3 +41,7 @@ ParamTCon = TypeVar("ParamTCon", contravariant=True)
 ParamTCov = TypeVar("ParamTCov", covariant=True)
 
 ArgKwargP = ParamSpec("ArgKwargP")
+
+ParamTs = TypeVarTuple("ParamTs")
+ParamTs1 = TypeVarTuple("ParamTs1")
+ParamTs2 = TypeVarTuple("ParamTs2")

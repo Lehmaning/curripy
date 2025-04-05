@@ -1,4 +1,4 @@
-# __bootstrap
+# _bootstrap
 
 This package contains some manual-curried functions that are needed before defining functions in ``utils`` like ``partial`` and ``curry``.
 

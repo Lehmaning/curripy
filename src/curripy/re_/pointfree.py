@@ -1,5 +1,5 @@
 import re
-from ..utils import curry_right
+from curripy.utils import curry_right
 
 __all__ = (
     "findall",

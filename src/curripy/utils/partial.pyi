@@ -5,7 +5,7 @@ from typing import (
 )
 from functools import partial as partial_
 
-from ..__generics import (
+from curripy.__generics import (
     ArgKwargP,
     ParamT1,
     ParamT2,

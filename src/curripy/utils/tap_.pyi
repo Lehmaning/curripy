@@ -1,5 +1,5 @@
 from typing import Callable
-from ..__generics import ParamT
+from curripy.__generics import ParamT
 
 def tap(
     func: Callable[[ParamT], None],

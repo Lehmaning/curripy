@@ -1,9 +1,9 @@
 from typing import Callable, TypeVar
 
-from curripy.__bootstrap.identity_ import identity
+from curripy._bootstrap.identity import identity
 
-from ..__generics import ParamT
-from .curry_ import curry
+from curripy.__generics import ParamT
+from .curry import curry
 
 ReturnThen = TypeVar("ReturnThen")
 ReturnElse = TypeVar("ReturnElse")

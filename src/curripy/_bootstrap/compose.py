@@ -1,6 +1,6 @@
 from functools import reduce
 
-from curripy.__bootstrap.identity_ import identity
+from curripy._bootstrap.identity import identity
 
 from .operator_ import pass_arg
 

@@ -1,4 +1,4 @@
-from ..__bootstrap.operator_ import or_, add, radd
+from curripy._bootstrap.operator_ import or_, add, radd
 
 __all__ = (
     "partial",

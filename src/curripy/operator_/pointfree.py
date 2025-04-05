@@ -1,4 +1,4 @@
-from ..__bootstrap.operator_ import (
+from curripy._bootstrap.operator_ import (
     argpasser,
     itemgetter,
     attrgetter,

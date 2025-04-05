@@ -1,8 +1,8 @@
 from typing_extensions import TypeIs
 
-from ..__bootstrap.builtins_ import filter_, map_
-from ..dummies.type import _ClassInfo
-from ..utils import curry, curry_right
+from curripy._bootstrap.builtins_ import filter_, map_
+from curripy.dummies.type import _ClassInfo
+from curripy.utils import curry, curry_right
 
 __all__ = (
     "divmod_",

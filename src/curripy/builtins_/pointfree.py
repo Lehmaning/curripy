@@ -1,5 +1,5 @@
-from ..__bootstrap.builtins_ import items, values
-from ..utils import curry, curry_right, partial, tap
+from curripy._bootstrap.builtins_ import items, values
+from curripy.utils import curry, curry_right, partial, tap
 
 __all__ = (
     "getattr_",

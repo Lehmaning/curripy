@@ -2,18 +2,33 @@
 Some functions of operator with better type hints
 """
 
-from operator import add, contains, getitem, is_, is_not, lshift, or_, rshift, sub
+from operator import (
+    add,
+    attrgetter,
+    contains,
+    eq,
+    getitem,
+    is_,
+    is_not,
+    itemgetter,
+    lshift,
+    methodcaller,
+    or_,
+    rshift,
+    sub,
+)
 
 __all__ = (
     "is_",
     "is_not",
     "add",
+    "eq",
     "sub",
     "contains",
     "rshift",
     "lshift",
     "getitem",
-    # "or_",
+    "or_",
     "itemgetter",
     "methodcaller",
     "attrgetter",
@@ -45,25 +60,24 @@ def rsub(a, b):
     return b - a
 
 
-def attrgetter(name: str):
-    def caller(obj):
-        nonlocal name
-        return getattr(obj, name)
+# def attrgetter(name: str):
+#     def caller(obj):
+#         nonlocal name
+#         return getattr(obj, name)
 
-    return caller
-
-
-def methodcaller(name: str, *args, **kwargs):
-    def caller(obj):
-        nonlocal args, kwargs, name
-        return getattr(obj, name)(*args, **kwargs)
-
-    return caller
+#     return caller
 
 
-def itemgetter(a):
-    def __b(b):
-        nonlocal a
-        return b[a]
+# def methodcaller(name: str, *args, **kwargs):
+#     def caller(obj):
+#         nonlocal args, kwargs, name
+#         return getattr(obj, name)(*args, **kwargs)
 
-    return __b
+#     return caller
+
+# def itemgetter(a):
+#     def __b(b):
+#         nonlocal a
+#         return b[a]
+
+#     return __b

@@ -1,6 +1,6 @@
 import operator
 
-from ..__bootstrap.operator_ import (
+from curripy._bootstrap.operator_ import (
     add,
     contains,
     in_,
@@ -9,8 +9,8 @@ from ..__bootstrap.operator_ import (
     or_,
     radd,
 )
-from ..__overlays import operator_ as operator_temporarily_typed
-from ..utils import curry
+from curripy._overlays import operator_ as operator_temporarily_typed
+from curripy.utils import curry
 
 __all__ = (
     "add",
@@ -67,7 +67,7 @@ and_ = curry(operator.and_, arity=2)
 call = curry(operator.call, arity=2)
 concat = curry(operator.concat, arity=2)
 countOf = curry(operator.countOf, arity=2)
-eq = curry(operator.eq, arity=2)
+eq = curry(operator_temporarily_typed.eq, arity=2)
 floordiv = curry(operator.floordiv, arity=2)
 ge = curry(operator.ge, arity=2)
 gt = curry(operator.gt, arity=2)

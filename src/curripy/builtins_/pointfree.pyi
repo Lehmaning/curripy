@@ -2,10 +2,10 @@ from typing import Any, Callable, Iterable
 
 from typing_extensions import TypeIs
 
-from ..__bootstrap.builtins_ import items, values
-from ..__generics import ReturnT, ReturnT1, ReturnT2
-from ..dummies.type import _ClassInfo
-from ..utils import curry, curry_right, tap
+from curripy._bootstrap.builtins_ import items, values
+from curripy.__generics import ReturnT, ReturnT1, ReturnT2
+from curripy.dummies.type import _ClassInfo
+from curripy.utils import curry, curry_right, tap
 
 __all__ = (
     "getattr_",

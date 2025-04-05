@@ -1,3 +1,3 @@
-from ..__generics import ReturnT
+from curripy.__generics import ReturnT
 
 def identity(x: ReturnT) -> ReturnT: ...

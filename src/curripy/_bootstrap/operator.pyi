@@ -1,20 +1,20 @@
 """
-Type stubs for currypy.__bootstrap.operator_
+Type stubs for currypy._bootstrap.operator_
 
 Notice: curry and curry_right is for automtically type hinting, not original logic.
 """
 
 import operator
 
-from ..__overlays import operator_ as operator_temporarily_typed
-from ..__overlays.operator_ import (
+from curripy._overlays import operator_ as operator_temporarily_typed
+from curripy._overlays.operator_ import (
     attrgetter,
     itemgetter,
     methodcaller,
     pass_arg,
     argpasser,
 )
-from ..utils import curry, curry_right
+from curripy.utils import curry, curry_right
 
 __all__ = (
     # normal functions

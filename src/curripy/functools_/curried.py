@@ -1,5 +1,5 @@
 from functools import reduce as reduce_
-from ..utils import curry
+from curripy.utils import curry
 
 
 __all__ = ("reduce",)

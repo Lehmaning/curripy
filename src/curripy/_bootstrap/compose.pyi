@@ -1,6 +1,6 @@
 from typing import Callable, overload
 
-from ..__generics import (
+from curripy.__generics import (
     ArgKwargP,
     ReturnT,
     ReturnT1,
@@ -9,7 +9,7 @@ from ..__generics import (
     ReturnT4,
     ReturnT5,
 )
-from ..utils import curry
+from curripy.utils import curry
 
 __all__ = (
     "dot",

@@ -1,5 +1,5 @@
-from ..__overlays.operator_ import attrgetter, itemgetter, methodcaller
-from ..__overlays.operator_ import pass_arg, argpasser
+from curripy._overlays.operator_ import attrgetter, itemgetter, methodcaller
+from curripy._overlays.operator_ import pass_arg, argpasser
 
 __all__ = (
     # normal functions

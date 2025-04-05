@@ -1,5 +1,9 @@
-from typing import Any, Awaitable, Protocol
-from .__generics import ParamTCon, ReturnTCov
+from collections.abc import Awaitable
+from typing import Any, Protocol
+
+from typing_extensions import TypeIs
+
+from .__generics import ParamT, ParamTCon, ReturnTCov
 
 
 class SupportsContains(Protocol):
@@ -26,7 +30,6 @@ class SupportsAnext(Protocol[ReturnTCov]):
     def __anext__(self) -> Awaitable[ReturnTCov]: ...
 
 
-#  protocols
 class SupportsAdd(Protocol[ParamTCon, ReturnTCov]):
     def __add__(self, x: ParamTCon, /) -> ReturnTCov: ...
 

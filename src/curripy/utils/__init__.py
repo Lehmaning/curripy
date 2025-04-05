@@ -1,8 +1,8 @@
 from .compose_ import cdot, compose, dot, pipe
 from .cond import else_, if_, if_then, if_then_else, then, cond
-from .curry_ import curry, curry_right
-from .identity_ import identity
-from .partial_ import partial
+from .curry import curry, curry_right
+from .identity import identity
+from .partial import partial
 from .tap_ import tap
 
 __all__ = (

@@ -1,6 +1,6 @@
-from .curry_ import curry
-from .identity_ import identity
-from .partial_ import partial
+from .curry import curry
+from .identity import identity
+from .partial import partial
 
 __all__ = (
     "if_then_else",

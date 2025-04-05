@@ -1,27 +1,36 @@
 import operator
+from types import MappingProxyType
 from typing import (
     Any,
     Callable,
     Concatenate,
     Container,
+    Hashable,
+    Iterable,
     TypeGuard,
+    TypeVar,
+    overload,
 )
 
 from typing_extensions import TypeIs
 
-
-from ..__generics import (
+from curripy.__generics import (
     ArgKwargP,
     ParamT,
+    ParamT1,
+    ParamT2,
     ParamTCon,
+    ParamTCov,
     ReturnT,
+    ReturnT1,
+    ReturnT2,
     ReturnTCov,
 )
-from ..protocols import (
+from curripy.protocols import (
     SupportsAdd,
     SupportsContainsAndGetItem,
     SupportsLShift,
-    # SupportsOr,
+    SupportsOr,
     SupportsRAdd,
     SupportsRShift,
     SupportsRSub,
@@ -47,6 +56,8 @@ __all__ = (
     "argpasser",
     "pass_arg",
 )
+HashableT1 = TypeVar("HashableT1", bound=Hashable)
+HashableT2 = TypeVar("HashableT2", bound=Hashable)
 
 # def or_(a: SupportsOr[ParamTCon, ReturnTCov], b: ParamTCon) -> ReturnTCov: ...
 def is_(a: ParamT, b: Any) -> TypeIs[ParamT]: ...
@@ -72,7 +83,15 @@ def argpasser(
     [Callable[[ParamT], ReturnT]],
     ReturnT,
 ]: ...
-def contains(a: Container[Any], b: ParamT) -> TypeGuard[ParamT]: ...
+def eq(a: ParamT, b: ParamT | object) -> TypeIs[ParamT]: ...
+def contains(a: Container[object], b: ParamT) -> TypeGuard[Container[ParamT]]: ...
+
+# @overload
+# def or_(
+#     a: MappingProxyType[HashableT1, ReturnT1], b: MappingProxyType[HashableT2, ReturnT2]
+# ) -> MappingProxyType[HashableT1 | HashableT2, ReturnT1 | ReturnT2]: ...
+# @overload
+def or_(a: ParamT1, b: ParamT2) -> ParamT1 | ParamT2: ...
 
 itemgetter = operator.itemgetter
 methodcaller = operator.methodcaller

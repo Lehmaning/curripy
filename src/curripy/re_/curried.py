@@ -1,7 +1,7 @@
 import re
 
-from curripy.utils.curry_ import curry_right
-from ..utils import curry
+from curripy.utils.curry import curry_right
+from curripy.utils import curry
 
 __all__ = ()
 

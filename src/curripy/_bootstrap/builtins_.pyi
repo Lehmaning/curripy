@@ -10,11 +10,12 @@ from typing import (
     overload,
 )
 
+from curripy.__generics import ParamTCon, ParamTCov
 from typing_extensions import TypeIs
 
-from curripy.utils.curry_ import curry
+from curripy.utils.curry import curry
 
-from ..__generics import (
+from curripy.__generics import (
     ParamT,
     ParamT1,
     ParamT2,
@@ -39,16 +40,16 @@ map_ = curry(map)
 
 @overload
 def filter_(
-    func: Callable[[ParamT1], TypeIs[ParamT2]],
-) -> Callable[[Iterable[ParamT1]], filter[ParamT2]]: ...
-@overload
-def filter_(
-    func: Callable[[ParamT], Any],
-) -> Callable[[Iterable[ParamT]], filter[Any]]: ...
+    func: Callable[[ParamTCon], TypeIs[ParamTCov]],
+) -> Callable[[Iterable[ParamTCon]], filter[ParamTCov]]: ...
 @overload
 def filter_(
     func: None,
 ) -> Callable[[Iterable[ParamT | None]], filter[ParamT]]: ...
+@overload
+def filter_(
+    func: Callable[[ParamT], Any],
+) -> Callable[[Iterable[ParamT]], filter[Any]]: ...
 
 # @overload
 # def map_(
