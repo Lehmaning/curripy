@@ -1,6 +1,6 @@
 # curripy
 
-Curried and point-free versions of the Python standard libraries functions and methods.
+Collections of curried and point-free style functions and methods for Python.
 
 ## Features
 
@@ -19,11 +19,9 @@ pip install curripy
 ```shell
 git clone https://github.com/Lehmaning/curripy.git
 cd curripy
-rye sync
-rye build
+uv sync
+uv build
 ```
-
-Then check the build results in directory ``dist``. You can install ``curripy`` from them.
 
 ## See Also
 
